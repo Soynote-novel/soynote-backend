@@ -1,0 +1,20 @@
+{
+    "dev": true,
+    "http_port": 80,
+    "trustproxy": false,
+    "redis": {
+        "host": "host",
+        "port": 6379,
+        "pass": "password",
+        "database": 0
+    },
+    "db": {
+        "database": "Place here your database",
+        "username": "Place here your db id",
+        "password": "Place here your db pw",
+        "host": "Place here your db host",
+        "sqlite_storage": "Place here your sqlite_storage",
+        "type": "Choose mysql, sqlite, postgres, mssql"
+    },
+    "recaptcha": "your recaptcha site secret"
+}
