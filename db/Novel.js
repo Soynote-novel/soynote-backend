@@ -1,6 +1,10 @@
 const Sequelize = require('sequelize')
 
-module.exports.db = {
+module.exports.config = {
+  timestamps: true
+}
+
+module.exports.table = {
   id: {
     id: Sequelize.INTEGER(80),
     autoIncrement: true,
@@ -26,7 +30,4 @@ module.exports.db = {
     allowNull: false,
     defaultValue: 0
   }
-}
-module.exports.config = {
-  timestamps: true
 }

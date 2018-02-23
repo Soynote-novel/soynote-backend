@@ -7,7 +7,7 @@ const {
   host
 } = require('../config').db
 
-module.exports = new Sequelize(database, username, password, {
+const config = {
   host,
   dialect: 'mysql',
   pool: {
@@ -17,4 +17,6 @@ module.exports = new Sequelize(database, username, password, {
     idle: 10000
   },
   operatorsAliases: false
-})
+}
+
+module.exports = new Sequelize(database, username, password, config)
