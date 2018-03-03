@@ -5,7 +5,8 @@ const express = require('express')
 const onFinished = require('on-finished')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-// const path = require('path')
+const path = require('path')
+const session = require('express-session')
 // const bluebird = require('bluebird')
 // const redis = require('redis')
 
@@ -37,11 +38,18 @@ try {
 
   // main setting
   app.disable('x-powered-by')
-  app.set(`trust proxy: ${config.trustproxy}`)
+  app.set('trust proxy', config.trustproxy)
   logger.info(`trust proxy: ${config.trustproxy}`)
 
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(bodyParser.json())
+
+  app.use(session({
+    secret: 'wafflet',
+    resave: false,
+    saveUninitialized: true
+  }))
+
   app.use(cors({ origin: 'http://127.0.0.1:3000' }))
 
   // health moniter
@@ -84,7 +92,7 @@ try {
     res.end()
   })
 
-  // app.use('/auth', require(path.join(__dirname, 'routes', 'auth.js')))
+  app.use('/auth', require(path.join(__dirname, 'routes', 'auth.js')))
 
   app.use((req, res) => {
     const payload = {

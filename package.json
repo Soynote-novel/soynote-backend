@@ -12,6 +12,7 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "log4js": "^2.5.3",
     "mysql2": "^1.5.2",
     "on-finished": "^2.3.0",
