@@ -9,6 +9,8 @@ const Hashtag = require('./Hashtag')
 
 const defineTable = (name, { table, config }) => DB.define(name, table, config)
 
+DB.sync()
+
 module.exports.User = defineTable('user', User)
 module.exports.OAuth = defineTable('oAuth', OAuth)
 module.exports.Novel = defineTable('novel', Novel)

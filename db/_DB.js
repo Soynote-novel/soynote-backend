@@ -16,7 +16,8 @@ const config = {
     acquire: 30000,
     idle: 10000
   },
-  operatorsAliases: false
+  operatorsAliases: false,
+  logging: false
 }
 
 module.exports = new Sequelize(database, username, password, config)

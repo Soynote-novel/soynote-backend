@@ -8,7 +8,11 @@ module.exports.findById = (id) => {
     db.User.findOne({
       where: { id: id }
     }).then((user) => {
-      resolve(user.dataValues)
+      if (user && user.dataValues) {
+        resolve(user.dataValues)
+      } else {
+        resolve(null)
+      }
     }).catch((error) => {
       reject(error)
     })
@@ -20,7 +24,11 @@ module.exports.findByEmail = (email) => {
     db.User.findOne({
       where: { email: email }
     }).then((user) => {
-      resolve(user.dataValues)
+      if (user && user.dataValues) {
+        resolve(user.dataValues)
+      } else {
+        resolve(null)
+      }
     }).catch((error) => {
       reject(error)
     })
@@ -32,7 +40,11 @@ module.exports.findByNick = (nickname) => {
     db.User.findOne({
       where: { nickname: nickname }
     }).then((user) => {
-      resolve(user.dataValues)
+      if (user && user.dataValues) {
+        resolve(user.dataValues)
+      } else {
+        resolve(null)
+      }
     }).catch((error) => {
       reject(error)
     })

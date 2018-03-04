@@ -6,7 +6,7 @@ module.exports.config = {
 
 module.exports.table = {
   id: {
-    id: Sequelize.INTEGER(80),
+    type: Sequelize.INTEGER(80),
     autoIncrement: true,
     allowNull: false,
     primaryKey: true,
