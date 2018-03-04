@@ -1,6 +1,5 @@
 const router = require('express').Router
 const model = require('../model')
-const salt = 'waffle'
 
 router.post('/login', async (req, res) => {
   const user = await model.User.findByEmail(req.email)
@@ -14,7 +13,7 @@ router.post('/login', async (req, res) => {
     res.jsonp(payload)
     res.end()
   } else {
-    const password = model.User.password(res.password, salt)
+    const password = model.User.password(res.password, model.User.salt)
 
     if (user.password === password) {
       req.session = {
