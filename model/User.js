@@ -6,7 +6,7 @@ module.exports.salt = salt
 module.exports.findById = (id) => {
   return new Promise((resolve, reject) => {
     db.User.findOne({
-      where: { id: id }
+      where: { id }
     }).then((user) => {
       if (user && user.dataValues) {
         resolve(user.dataValues)
@@ -22,7 +22,7 @@ module.exports.findById = (id) => {
 module.exports.findByEmail = (email) => {
   return new Promise((resolve, reject) => {
     db.User.findOne({
-      where: { email: email }
+      where: { email }
     }).then((user) => {
       if (user && user.dataValues) {
         resolve(user.dataValues)
@@ -38,7 +38,7 @@ module.exports.findByEmail = (email) => {
 module.exports.findByNick = (nickname) => {
   return new Promise((resolve, reject) => {
     db.User.findOne({
-      where: { nickname: nickname }
+      where: { nickname }
     }).then((user) => {
       if (user && user.dataValues) {
         resolve(user.dataValues)
@@ -55,9 +55,9 @@ module.exports.register = ({email, password, nickname}) => {
   const createPassword = require('./User').password
   return new Promise((resolve, reject) => {
     db.User.create({
-      email: email,
+      email,
       password: createPassword(password, salt),
-      nickname: nickname
+      nickname
     }).then(() => {
       resolve(true)
     }).catch((error) => {

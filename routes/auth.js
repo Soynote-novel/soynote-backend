@@ -16,12 +16,8 @@ router.post('/login', async (req, res) => {
     const password = model.User.password(res.password, model.User.salt)
 
     if (user.password === password) {
-      req.session = {
-        nickname: user.nickname,
-        email: user.email,
-        isAdmin: user.isAdmin,
-        id: user.id
-      }
+      const { nickname, email, isAdmin, id } = user
+      req.session = { nickname, email, isAdmin, id }
 
       let payload = {
         success: true
