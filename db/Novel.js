@@ -6,23 +6,23 @@ module.exports.config = {
 
 module.exports.table = {
   id: {
-    type: Sequelize.INTEGER(80),
+    type: Sequelize.CHAR(36),
     autoIncrement: true,
     allowNull: false,
     primaryKey: true,
     unique: true
   },
   name: {
-    type: Sequelize.STRING(100),
+    type: Sequelize.CHAR(100),
     allowNull: false,
     unique: false
   },
   writer: {
-    type: Sequelize.INTEGER(20),
+    type: Sequelize.CHAR(36),
     allowNull: false
   },
   bio: {
-    type: Sequelize.STRING(80),
+    type: Sequelize.CHAR(80),
     allowNull: false
   },
   score: {

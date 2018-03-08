@@ -6,8 +6,7 @@ module.exports.config = {
 
 module.exports.table = {
   id: {
-    type: Sequelize.INTEGER(40),
-    autoIncrement: true,
+    type: Sequelize.CHAR(36),
     allowNull: false,
     primaryKey: true,
     unique: true,
@@ -16,7 +15,7 @@ module.exports.table = {
     }
   },
   userId: {
-    type: Sequelize.STRING(20),
+    type: Sequelize.CHAR(36),
     allowNull: false
   },
   oauthId: {
@@ -28,11 +27,11 @@ module.exports.table = {
     }
   },
   vendor: {
-    type: Sequelize.STRING(20),
+    type: Sequelize.CHAR(10),
     allowNull: false
   },
   accessToken: {
-    type: Sequelize.STRING(64),
+    type: Sequelize.CHAR(64),
     allowNull: false
   }
 }

@@ -6,8 +6,7 @@ module.exports.config = {
 
 module.exports.table = {
   id: {
-    type: Sequelize.INTEGER(20),
-    autoIncrement: true,
+    type: Sequelize.CHAR(36),
     allowNull: false,
     primaryKey: true,
     unique: true,
@@ -16,7 +15,7 @@ module.exports.table = {
     }
   },
   email: {
-    type: Sequelize.STRING(50),
+    type: Sequelize.CHAR(50),
     allowNull: false,
     unique: true,
     validate: {
@@ -24,11 +23,11 @@ module.exports.table = {
     }
   },
   password: {
-    type: Sequelize.STRING(256),
+    type: Sequelize.CHAR(256),
     allowNull: false
   },
   nickname: {
-    type: Sequelize.STRING(20),
+    type: Sequelize.CHAR(20),
     allowNull: false,
     unique: true
   },
@@ -49,12 +48,12 @@ module.exports.table = {
     defaultValue: false
   },
   bio: {
-    type: Sequelize.STRING(80),
+    type: Sequelize.CHAR(80),
     allowNull: true,
     unique: false
   },
   profilePhoto: {
-    type: Sequelize.STRING(40),
+    type: Sequelize.CHAR(40),
     allowNull: true
   },
   favorites: {

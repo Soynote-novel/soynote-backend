@@ -6,22 +6,21 @@ module.exports.config = {
 
 module.exports.table = {
   id: {
-    type: Sequelize.INTEGER(120),
-    autoIncrement: true,
+    type: Sequelize.CHAR(36),
     allowNull: false,
     primaryKey: true,
     unique: true
   },
   writer: {
-    type: Sequelize.INTEGER(20),
+    type: Sequelize.CHAR(36),
     allowNull: false
   },
   novel: {
-    type: Sequelize.INTEGER(80),
+    type: Sequelize.CHAR(36),
     allowNull: false
   },
   episode: {
-    type: Sequelize.INTEGER(120),
+    type: Sequelize.CHAR(36),
     allowNull: false
   },
   content: {

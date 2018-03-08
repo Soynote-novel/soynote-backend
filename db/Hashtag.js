@@ -6,12 +6,12 @@ module.exports.config = {
 
 module.exports.table = {
   novel: {
-    type: Sequelize.INTEGER(80),
+    type: Sequelize.CHAR(36),
     allowNull: false,
     primaryKey: true
   },
   tag: {
-    type: Sequelize.STRING(20),
+    type: Sequelize.CHAR(20),
     allowNull: false
   }
 }

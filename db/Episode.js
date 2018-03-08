@@ -6,18 +6,17 @@ module.exports.config = {
 
 module.exports.table = {
   id: {
-    type: Sequelize.INTEGER(120),
-    autoIncrement: true,
+    type: Sequelize.CHAR(36),
     allowNull: false,
     primaryKey: true,
     unique: true
   },
   name: {
-    type: Sequelize.STRING(120),
+    type: Sequelize.CHAR(36),
     allowNull: false
   },
   novel: {
-    type: Sequelize.STRING(80),
+    type: Sequelize.CHAR(36),
     allowNull: false
   },
   isAdult: {
@@ -30,7 +29,7 @@ module.exports.table = {
     allowNull: false
   },
   poster: {
-    type: Sequelize.STRING(80),
+    type: Sequelize.CHAR(36),
     allowNull: true
   },
   score: {
