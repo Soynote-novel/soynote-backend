@@ -1,9 +1,13 @@
-const db = require('./model');
+const uuidGen = require('./model/UUIDGen');
 
 (async () => {
   try {
-    let data = await db.User.findByEmail('jioo0224@naver.com')
-    console.log(data)
+    let result = await uuidGen((result) => {
+      return new Promise((resolve, reject) => {
+        resolve(true)
+      })
+    })
+    console.log(result)
   } catch (error) {
     console.error(error)
   }

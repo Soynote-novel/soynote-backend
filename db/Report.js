@@ -20,7 +20,7 @@ module.exports.table = {
     allowNull: false
   },
   content: {
-    type: Sequelize.CHAR(256),
+    type: Sequelize.CHAR(255),
     allowNull: false
   },
   report: {

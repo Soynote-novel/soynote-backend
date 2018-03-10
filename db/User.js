@@ -23,7 +23,7 @@ module.exports.table = {
     }
   },
   password: {
-    type: Sequelize.CHAR(256),
+    type: Sequelize.CHAR(255),
     allowNull: false
   },
   nickname: {
