@@ -1,6 +1,7 @@
 const db = require('../db')
 const crypto = require('crypto')
 const salt = 'soynote'
+const UUIDGen = require('./UUIDGen')
 module.exports.salt = salt
 
 module.exports.findById = (id) => {
@@ -54,13 +55,31 @@ module.exports.findByNick = (nickname) => {
 module.exports.register = ({email, password, nickname}) => {
   const createPassword = require('./User').password
   return new Promise((resolve, reject) => {
-    db.User.create({
-      email,
-      password: createPassword(password, salt),
-      nickname
-    }).then(() => {
-      resolve(true)
-    }).catch((error) => {
+    UUIDGen((result) => {
+      const findById = require('./User').findById
+      return new Promise((resolve, reject) => {
+        findById(result).then((result) => {
+          if (!result) {
+            resolve(true)
+          } else {
+            resolve(false)
+          }
+        }).catch((error) => {
+          reject(error)
+        })
+      })
+    }).then((uuid) => {
+      db.User.create({
+        uuid,
+        email,
+        password: createPassword(password, salt),
+        nickname
+      }).then(() => {
+        resolve(true)
+      }).catch((error) => {
+        reject(error)
+      })
+    }).error((error) => {
       reject(error)
     })
   })
