@@ -26,7 +26,7 @@ module.exports.findByNick = async (nickname) => {
 
 module.exports.register = async ({email, password, nickname}) => {
   const createPassword = require('./User').createPassword
-  let {uuid, genPassword} = await Promise.all([
+  let [uuid, genPassword] = await Promise.all([
     UUIDGen(async (result) => {
       const findById = require('./User').findById
       let find = await findById(result)
@@ -35,9 +35,9 @@ module.exports.register = async ({email, password, nickname}) => {
     createPassword(password)
   ])
   await db.User.create({
-    uuid,
+    id: uuid,
     email,
-    genPassword,
+    password: genPassword,
     nickname
   })
   return true
