@@ -9,10 +9,7 @@ module.exports.table = {
     type: Sequelize.CHAR(36),
     allowNull: false,
     primaryKey: true,
-    unique: true,
-    validate: {
-      isInt: true
-    }
+    unique: true
   },
   userId: {
     type: Sequelize.CHAR(36),

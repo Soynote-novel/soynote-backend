@@ -1,4 +1,4 @@
-const router = require('express').Router
+const router = require('express').Router()
 const model = require('../model')
 
 router.post('/login', async (req, res) => {
@@ -13,9 +13,7 @@ router.post('/login', async (req, res) => {
     res.jsonp(payload)
     res.end()
   } else {
-    const password = model.User.password(res.password, model.User.salt)
-
-    if (user.password === password) {
+    if (await model.User.comparePassword(req.body.password, user.password)) {
       const { nickname, email, isAdmin, id } = user
       req.session = { nickname, email, isAdmin, id }
 

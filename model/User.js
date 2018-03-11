@@ -1,8 +1,7 @@
 const db = require('../db')
+const bcrypt = require('bcrypt')
 const crypto = require('crypto')
-const salt = 'soynote'
 const UUIDGen = require('./UUIDGen')
-module.exports.salt = salt
 
 module.exports.findById = async (id) => {
   let user = db.User.findOne({
@@ -26,23 +25,32 @@ module.exports.findByNick = async (nickname) => {
 }
 
 module.exports.register = async ({email, password, nickname}) => {
-  const createPassword = require('./User').password
-  let uuid = await UUIDGen(async (result) => {
-    const findById = require('./User').findById
-    let find = await findById(result)
-    return !find
-  })
+  const createPassword = require('./User').createPassword
+  let {uuid, genPassword} = await Promise.all([
+    UUIDGen(async (result) => {
+      const findById = require('./User').findById
+      let find = await findById(result)
+      return !find
+    }),
+    createPassword(password)
+  ])
   await db.User.create({
     uuid,
     email,
-    password: createPassword(password, salt),
+    genPassword,
     nickname
   })
   return true
 }
 
-module.exports.password = (password, salt) => {
-  const firstPassword = crypto.createHash('sha256').update(password).digest('base64')
-  const passwordWithSalt = crypto.createHash('sha256').update(firstPassword + salt).digest('base64')
-  return passwordWithSalt
+module.exports.createPassword = async (password) => {
+  const sha256Password = crypto.createHash('sha256').update(password).digest('hex')
+  const bcryptPassword = await bcrypt.hash(sha256Password, 12)
+  return bcryptPassword
+}
+
+module.exports.comparePassword = async (plaintextPassword, hashedPassword) => {
+  const sha256Password = crypto.createHash('sha256').update(plaintextPassword).digest('hex')
+  const compare = await bcrypt.compare(sha256Password, hashedPassword)
+  return compare
 }
