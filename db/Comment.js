@@ -16,7 +16,7 @@ module.exports.table = {
     type: Sequelize.UUID,
     allowNull: false
   },
-  episodeId: {
+  episode: {
     type: Sequelize.UUID,
     allowNull: false
   },

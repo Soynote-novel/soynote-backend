@@ -5,11 +5,11 @@ module.exports.config = {
 }
 
 module.exports.table = {
-  userId: {
+  user: {
     type: Sequelize.UUID,
     allowNull: false
   },
-  subscribedUserId: {
+  subscribedUser: {
     type: Sequelize.UUID,
     allowNull: false
   }

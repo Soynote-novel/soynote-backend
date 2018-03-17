@@ -1,4 +1,4 @@
-const uuidGen = require('./model/UUIDGen');
+const uuidGen = require('../model/UUIDGen');
 
 (async () => {
   try {

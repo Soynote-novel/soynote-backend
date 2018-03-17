@@ -16,7 +16,7 @@ module.exports.table = {
     type: Sequelize.CHAR(120),
     allowNull: false
   },
-  novelId: {
+  novel: {
     type: Sequelize.UUID,
     allowNull: false
   },

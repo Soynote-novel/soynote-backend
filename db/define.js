@@ -23,12 +23,12 @@ db.User.hasMany(db.Report, {
 
 // User.id -> SubscribedAuthors.userId
 db.User.hasMany(db.SubscribedAuthors, {
-  foreignKey: 'userId'
+  foreignKey: 'user'
 })
 
 // User.id -> SubscribedAuthors.subscribedUserId
 db.User.hasMany(db.SubscribedAuthors, {
-  foreignKey: 'subscribedUserId'
+  foreignKey: 'subscribedUser'
 })
 
 // User.id -> Favorites.userId
