@@ -5,6 +5,9 @@ const db = require('./index')
 db.User.hasMany(db.OAuth, {
   foreignKey: 'userId'
 })
+db.OAuth.belongsTo(db.User, {
+  foreignKey: 'id'
+})
 
 // User.id -> Novel.writer
 db.User.hasMany(db.Novel, {

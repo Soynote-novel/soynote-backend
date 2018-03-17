@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const crypto = require('crypto')
 
 module.exports.findById = async (id) => {
-  let user = db.User.findOne({
+  let user = await db.User.findOne({
     where: { id }
   })
   return (!!user) && user.dataValues
