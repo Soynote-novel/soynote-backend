@@ -6,7 +6,7 @@ db.User.hasMany(db.OAuth, {
   foreignKey: 'userId'
 })
 db.OAuth.belongsTo(db.User, {
-  foreignKey: 'id'
+  foreignKey: 'userId'
 })
 
 // User.id -> Novel.writer
