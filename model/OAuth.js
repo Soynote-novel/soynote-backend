@@ -35,3 +35,17 @@ module.exports.findByOauth = async (oauthId, vendor) => {
     return result
   }
 }
+
+module.exports.createUser = async ({userId, oauthId, vendor, accessToken}) => {
+  await db.OAuth.create({
+    userId, oauthId, vendor, accessToken
+  })
+  return true
+}
+
+module.exports.createDummyUser = async ({oauthId, vendor, accessToken}) => {
+  await db.OAuth.create({
+    oauthId, vendor, accessToken
+  })
+  return true
+}

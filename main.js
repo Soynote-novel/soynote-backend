@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const path = require('path')
 const session = require('express-session')
+const passport = require('passport')
 // const bluebird = require('bluebird')
 // const redis = require('redis')
 
@@ -49,6 +50,9 @@ try {
     resave: false,
     saveUninitialized: true
   }))
+
+  app.use(passport.initialize())
+  app.use(passport.session())
 
   app.use(cors({ origin: 'http://127.0.0.1:3000' }))
 
@@ -93,6 +97,7 @@ try {
   })
 
   app.use('/auth', require(path.join(__dirname, 'routes', 'auth.js')))
+  app.use('/oauth', require(path.join(__dirname, 'routes', 'oauth.js')))
 
   app.use((req, res) => {
     const payload = {

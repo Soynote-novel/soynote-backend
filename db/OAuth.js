@@ -14,7 +14,7 @@ module.exports.table = {
   },
   userId: {
     type: Sequelize.UUID,
-    allowNull: false
+    allowNull: true
   },
   oauthId: {
     type: Sequelize.INTEGER(64),
@@ -26,10 +26,6 @@ module.exports.table = {
   },
   vendor: {
     type: Sequelize.CHAR(10),
-    allowNull: false
-  },
-  accessToken: {
-    type: Sequelize.CHAR(64),
     allowNull: false
   }
 }

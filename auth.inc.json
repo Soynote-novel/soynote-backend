@@ -1,0 +1,26 @@
+{
+    "naver": {
+        "clientID": "",
+        "clientSecret": "",
+        "callbackURL": "{URI}/oauth/naver/callback"
+    },
+    "facebook": {
+        "clientID": "",
+        "clientSecret": "",
+        "callbackURL": "{URI}/oauth/facebook/callback"
+    },
+    "google": {
+        "clientID": "",
+        "clientSecret": "",
+        "callbackURL": "{URI}/oauth/google/callback"
+    },
+    "twitter": {
+        "consumerKey": "",
+        "consumerSecret": "",
+        "callbackURL": "{URI}/oauth/twitter/callback"
+    },
+    "kakao": {
+        "clientID": "",
+        "callbackURL": "{URI}/oauth/kakao/callback"
+    }
+}
