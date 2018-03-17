@@ -18,7 +18,7 @@ module.exports.table = {
     unique: false
   },
   writer: {
-    type: Sequelize.CHAR(36),
+    type: Sequelize.UUID,
     allowNull: false
   },
   bio: {

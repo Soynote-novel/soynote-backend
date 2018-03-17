@@ -21,7 +21,7 @@ module.exports.table = {
     }
   },
   password: {
-    type: Sequelize.STRING.BINARY(60),
+    type: Sequelize.CHAR(60).BINARY,
     allowNull: false
   },
   nickname: {

@@ -5,7 +5,7 @@ module.exports.config = {
 }
 
 module.exports.table = {
-  novel: {
+  novelId: {
     type: Sequelize.UUID,
     allowNull: false,
     primaryKey: true
