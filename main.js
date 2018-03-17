@@ -8,6 +8,7 @@ const cors = require('cors')
 const path = require('path')
 const session = require('express-session')
 const passport = require('passport')
+require('express-async-errors') // if use async function on express router, help to error logging
 // const bluebird = require('bluebird')
 // const redis = require('redis')
 
