@@ -6,6 +6,8 @@ const Episode = require('./Episode')
 const Comment = require('./Comment')
 const Report = require('./Report')
 const Hashtag = require('./Hashtag')
+const SubscribedAuthors = require('./SubscrfibedAuthors')
+const Favorites = require('./Favorites')
 
 const defineTable = (name, { table, config }) => DB.define(name, table, config)
 
@@ -18,3 +20,7 @@ module.exports.Episode = defineTable('episode', Episode)
 module.exports.Comment = defineTable('comment', Comment)
 module.exports.Report = defineTable('report', Report)
 module.exports.Hashtag = defineTable('hashtag', Hashtag)
+module.exports.SubscribedAuthors = defineTable('subscribedAuthors', SubscribedAuthors)
+module.exports.Favorites = defineTable('favorites', Favorites)
+
+require('./define.js')

@@ -1,17 +1,16 @@
 const Sequelize = require('sequelize')
 
 module.exports.config = {
-  timestamps: false
+  timestamps: true
 }
 
 module.exports.table = {
-  novel: {
+  userId: {
     type: Sequelize.UUID,
-    allowNull: false,
-    primaryKey: true
+    allowNull: false
   },
-  tag: {
-    type: Sequelize.CHAR(20),
+  subscribedUserId: {
+    type: Sequelize.UUID,
     allowNull: false
   }
 }

@@ -6,13 +6,14 @@ module.exports.config = {
 
 module.exports.table = {
   id: {
-    type: Sequelize.CHAR(36),
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
     allowNull: false,
     primaryKey: true,
     unique: true
   },
   userId: {
-    type: Sequelize.CHAR(36),
+    type: Sequelize.UUID,
     allowNull: false
   },
   oauthId: {

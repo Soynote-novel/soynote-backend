@@ -6,16 +6,21 @@ module.exports.config = {
 
 module.exports.table = {
   id: {
-    type: Sequelize.CHAR(36),
+    type: Sequelize.UUID,
     allowNull: false,
     primaryKey: true,
-    unique: true
+    unique: true,
+    defaultValue: Sequelize.UUIDV4
   },
   writer: {
-    type: Sequelize.CHAR(36),
+    type: Sequelize.UUID,
     allowNull: false
   },
   type: {
+    type: Sequelize.CHAR(10),
+    allowNull: false
+  },
+  status: {
     type: Sequelize.CHAR(10),
     allowNull: false
   },
@@ -24,7 +29,7 @@ module.exports.table = {
     allowNull: false
   },
   report: {
-    type: Sequelize.CHAR(36),
+    type: Sequelize.UUID,
     allowNull: false
   }
 }

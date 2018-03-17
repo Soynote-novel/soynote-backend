@@ -6,17 +6,18 @@ module.exports.config = {
 
 module.exports.table = {
   id: {
-    type: Sequelize.CHAR(36),
+    type: Sequelize.UUID,
     allowNull: false,
     primaryKey: true,
-    unique: true
+    unique: true,
+    defaultValue: Sequelize.UUIDV4
   },
   name: {
-    type: Sequelize.CHAR(36),
+    type: Sequelize.CHAR(120),
     allowNull: false
   },
   novel: {
-    type: Sequelize.CHAR(36),
+    type: Sequelize.UUID,
     allowNull: false
   },
   isAdult: {
@@ -29,12 +30,8 @@ module.exports.table = {
     allowNull: false
   },
   poster: {
-    type: Sequelize.CHAR(36),
+    type: Sequelize.UUID,
     allowNull: true
-  },
-  score: {
-    type: Sequelize.INTEGER(5),
-    allowNull: false
   },
   hit: {
     type: Sequelize.INTEGER(10),

@@ -6,10 +6,11 @@ module.exports.config = {
 
 module.exports.table = {
   id: {
-    type: Sequelize.CHAR(36),
+    type: Sequelize.UUID,
     allowNull: false,
     primaryKey: true,
-    unique: true
+    unique: true,
+    defaultValue: Sequelize.UUIDV4
   },
   name: {
     type: Sequelize.CHAR(100),
@@ -23,10 +24,5 @@ module.exports.table = {
   bio: {
     type: Sequelize.CHAR(80),
     allowNull: false
-  },
-  score: {
-    type: Sequelize.INTEGER(5),
-    allowNull: false,
-    defaultValue: 0
   }
 }

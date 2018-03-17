@@ -6,10 +6,11 @@ module.exports.config = {
 
 module.exports.table = {
   id: {
-    type: Sequelize.CHAR(36),
+    type: Sequelize.UUID,
     allowNull: false,
     primaryKey: true,
-    unique: true
+    unique: true,
+    defaultValue: Sequelize.UUIDV4
   },
   email: {
     type: Sequelize.CHAR(50),
@@ -20,7 +21,7 @@ module.exports.table = {
     }
   },
   password: {
-    type: Sequelize.CHAR(255),
+    type: Sequelize.STRING.BINARY(60),
     allowNull: false
   },
   nickname: {
@@ -48,18 +49,6 @@ module.exports.table = {
     type: Sequelize.CHAR(80),
     allowNull: true,
     unique: false
-  },
-  profilePhoto: {
-    type: Sequelize.CHAR(40),
-    allowNull: true
-  },
-  favorites: {
-    type: Sequelize.JSON,
-    allowNull: true
-  },
-  subscribedAuthors: {
-    type: Sequelize.JSON,
-    allowNull: true
   },
   recentIp: {
     type: Sequelize.JSON,

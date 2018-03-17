@@ -1,7 +1,6 @@
 const db = require('../db')
 const bcrypt = require('bcrypt')
 const crypto = require('crypto')
-const UUIDGen = require('./UUIDGen')
 
 module.exports.findById = async (id) => {
   let user = db.User.findOne({
@@ -26,16 +25,8 @@ module.exports.findByNick = async (nickname) => {
 
 module.exports.register = async ({email, password, nickname}) => {
   const createPassword = require('./User').createPassword
-  let [uuid, genPassword] = await Promise.all([
-    UUIDGen(async (result) => {
-      const findById = require('./User').findById
-      let find = await findById(result)
-      return !find
-    }),
-    createPassword(password)
-  ])
+  let genPassword = await createPassword(password)
   await db.User.create({
-    id: uuid,
     email,
     password: genPassword,
     nickname
