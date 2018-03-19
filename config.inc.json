@@ -1,18 +1,20 @@
 {
-    "dev": true,
-    "http_port": 80,
-    "trustproxy": false,
-    "redis": {
-        "host": "host",
-        "port": 6379,
-        "pass": "password",
-        "database": 0
-    },
-    "db": {
-        "database": "Place here your database",
-        "username": "Place here your db id",
-        "password": "Place here your db pw",
-        "host": "Place here your db host"
-    },
-    "recaptcha": "your recaptcha site secret"
+  "dev": true,
+  "port": {
+    "http": 80
+  },
+  "trustproxy": false,
+  "redis": {
+    "host": "host",
+    "port": 6379,
+    "pass": "password",
+    "database": 0
+  },
+  "db": {
+    "database": "Place here your database",
+    "username": "Place here your db id",
+    "password": "Place here your db pw",
+    "host": "Place here your db host"
+  },
+  "recaptcha": "your recaptcha site secret"
 }
