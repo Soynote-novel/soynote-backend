@@ -1,5 +1,13 @@
 const model = require('../model')
 
-const result = model.OAuth.findByUserId('input uuid')
+class Test {
+  static async findByUserId () {
+    const id = 'input uuid'
 
-console.log(result)
+    const result = await model.OAuth.findByUserId(id)
+
+    console.log(result)
+  }
+}
+
+Test.findByUserId()

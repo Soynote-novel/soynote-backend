@@ -1,5 +1,13 @@
 const model = require('../model')
 
-const result = model.User.findById('input uuid')
+class Test {
+  static async findById () {
+    const id = 'input uuid'
 
-console.log(result)
+    const result = model.User.findById(id)
+
+    console.log(result)
+  }
+}
+
+Test.findById()

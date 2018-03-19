@@ -3,8 +3,8 @@ const router = require('express').Router()
 const model = require('../model')
 const { Password } = require('../api')
 
-router.post('/login', (req, res) => {
-  const user = model.User.findByEmail(req.email)
+router.post('/login', async (req, res) => {
+  const user = await model.User.findByEmail(req.email)
 
   if (user.isBlocked) {
     const payload = {
@@ -40,7 +40,8 @@ router.post('/login', (req, res) => {
     isAdmin
   } = user
 
-  if (Password.isValid(req.body.password, targetPassword)) {
+  const isValid = await Password.isValid(req.body.password, targetPassword)
+  if (isValid) {
     req.session = { id, email, nickname, isAdmin }
 
     const payload = {
