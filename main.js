@@ -8,9 +8,12 @@ const cors = require('cors')
 const path = require('path')
 const session = require('express-session')
 const passport = require('passport')
-require('express-async-errors') // if use async function on express router, help to error logging
+
 // const bluebird = require('bluebird')
 // const redis = require('redis')
+
+// if use async function on express router, help to error logging
+require('express-async-errors')
 
 const config = require('./config.json')
 
@@ -69,19 +72,21 @@ try {
     onFinished(res, (err, response) => {
       if (err) {
         logger.error(err)
-      } else {
-        const { statusCode } = response
-        const { protocol, method, ip, originalUrl } = req
-        const message = [
-          protocol,
-          method,
-          statusCode,
-          ip.replace('::ffff:', ''),
-          originalUrl
-        ].join(' ')
 
-        logger.info(message)
+        return
       }
+
+      const { statusCode } = response
+      const { protocol, method, ip, originalUrl } = req
+      const message = [
+        protocol,
+        method,
+        statusCode,
+        ip.replace('::ffff:', ''),
+        originalUrl
+      ].join(' ')
+
+      logger.info(message)
     })
 
     next()
