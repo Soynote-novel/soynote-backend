@@ -1,16 +1,19 @@
 const Sequelize = require('sequelize')
 
+module.exports.name = 'hashtag'
+
 module.exports.config = {
-  timestamps: true
+  timestamps: false
 }
 
 module.exports.table = {
-  user: {
+  novel: {
     type: Sequelize.UUID,
-    allowNull: false
+    allowNull: false,
+    primaryKey: true
   },
-  subscribedUser: {
-    type: Sequelize.UUID,
+  tag: {
+    type: Sequelize.CHAR(20),
     allowNull: false
   }
 }

@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
 
+module.exports.name = 'oAuth'
+
 module.exports.config = {
   timestamps: true
 }
@@ -16,7 +18,7 @@ module.exports.table = {
     type: Sequelize.UUID,
     allowNull: true
   },
-  oauthId: {
+  oAuthId: {
     type: Sequelize.INTEGER(64),
     allowNull: false,
     unique: false,

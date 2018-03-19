@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
 
+module.exports.name = 'comment'
+
 module.exports.config = {
   timestamps: true
 }
