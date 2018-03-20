@@ -14,7 +14,18 @@
     "database": "Place here your database",
     "username": "Place here your db id",
     "password": "Place here your db pw",
-    "host": "Place here your db host"
+    "config": {
+      "host": "Place here your db host",
+      "dialect": "mysql",
+      "pool": {
+        "min": 0,
+        "max": 5,
+        "acquire": 30000,
+        "idle": 10000
+      },
+      "operatorsAliases": false,
+      "logging": false
+    }
   },
   "recaptcha": "your recaptcha site secret"
 }

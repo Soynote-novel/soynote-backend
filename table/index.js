@@ -1,8 +1,6 @@
 const Table = require('./_Table')
 const setForeignKeys = require('./_setForeignKeys')
 
-Table.sync()
-
 const defineTable = ({ name, table, config }) =>
   Table.define(name, table, config)
 
