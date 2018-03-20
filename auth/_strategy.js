@@ -1,8 +1,8 @@
 const model = require('../model')
 
-module.exports = (process, config) => {
+module.exports = (process, vendor) => {
   return async (req, accessToken, refreshToken, profile, done) => {
-    const user = await model.OAuth.findByOAuth(profile.id, config.vendor)
+    const user = await model.OAuth.findByOAuth(profile.id, vendor)
 
     if (user) {
       const { id, email, nickname, isAdmin } = user.user
@@ -12,7 +12,7 @@ module.exports = (process, config) => {
     }
 
     const result = {
-      vendor: config.vendor,
+      vendor,
       oAuthId: profile.id
     }
 

@@ -4,10 +4,9 @@ const {
   callbackURL
 } = require('../auth.json').facebook
 
-module.exports.config = {
-  Strategy: require('passport-facebook').Strategy,
-  vendor: 'facebook'
-}
+module.exports.vendor = 'facebook'
+
+module.exports.Strategy = require('passport-facebook').Strategy
 
 module.exports.strategyConfig = {
   clientID,
@@ -20,5 +19,3 @@ module.exports.strategyConfig = {
     'displayName'
   ]
 }
-
-module.exports.strategy = require('./_strategy')

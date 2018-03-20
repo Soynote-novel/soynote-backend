@@ -4,10 +4,9 @@ const {
   callbackURL
 } = require('../auth.json')
 
-module.exports.config = {
-  Strategy: require('passport-twitter').Strategy,
-  vendor: 'twitter'
-}
+module.exports.vendor = 'twitter'
+
+module.exports.Strategy = require('passport-twitter').Strategy
 
 module.exports.strategyConfig = {
   consumerKey,
@@ -15,5 +14,3 @@ module.exports.strategyConfig = {
   callbackURL,
   passReqToCallback: true
 }
-
-module.exports.strategy = require('./_strategy')

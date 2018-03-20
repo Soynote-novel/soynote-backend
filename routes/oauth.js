@@ -14,9 +14,7 @@ passport.serializeUser((user, done) => done(null, user))
 passport.deserializeUser((obj, done) => done(null, obj))
 
 // passport auth configure
-const configurePassport = ({ config, strategyConfig, strategy }) => {
-  const { vendor, Strategy } = config
-
+const configurePassport = ({ vendor, Strategy, strategyConfig }) => {
   const option = {
     successRedirect: '/oauth/loginsuccess',
     failureRedirect: '/oauth/loginfail'
@@ -25,7 +23,7 @@ const configurePassport = ({ config, strategyConfig, strategy }) => {
   router.get(`/${vendor}`, passport.authenticate(vendor))
   router.get(`/${vendor}/callback`, passport.authenticate(vendor, option))
 
-  passport.use(new Strategy(strategyConfig, strategy(process, config)))
+  passport.use(new Strategy(strategyConfig, auth._strategy(process, vendor)))
 }
 
 configurePassport(auth.facebook)

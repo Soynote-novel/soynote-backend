@@ -4,10 +4,9 @@ const {
   callbackURL
 } = require('../auth.json').naver
 
-module.exports.config = {
-  Strategy: require('passport-naver').Strategy,
-  vendor: 'naver'
-}
+module.exports.vendor = 'naver'
+
+module.exports.Strategy = require('passport-naver').Strategy
 
 module.exports.strategyConfig = {
   clientID,
@@ -15,5 +14,3 @@ module.exports.strategyConfig = {
   callbackURL,
   passReqToCallback: true
 }
-
-module.exports.strategy = require('./_strategy')
