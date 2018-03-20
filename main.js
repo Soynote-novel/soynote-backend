@@ -5,14 +5,17 @@ const express = require('express')
 const onFinished = require('on-finished')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const path = require('path')
 const session = require('express-session')
 const passport = require('passport')
-require('express-async-errors') // if use async function on express router, help to error logging
+
 // const bluebird = require('bluebird')
 // const redis = require('redis')
 
+// if use async function on express router, help to error logging
+require('express-async-errors')
+
 const config = require('./config.json')
+const routes = require('./routes')
 
 const app = express()
 const logger = log4js.getLogger()
@@ -69,19 +72,21 @@ try {
     onFinished(res, (err, response) => {
       if (err) {
         logger.error(err)
-      } else {
-        const { statusCode } = response
-        const { protocol, method, ip, originalUrl } = req
-        const message = [
-          protocol,
-          method,
-          statusCode,
-          ip.replace('::ffff:', ''),
-          originalUrl
-        ].join(' ')
 
-        logger.info(message)
+        return
       }
+
+      const { statusCode } = response
+      const { protocol, method, ip, originalUrl } = req
+      const message = [
+        protocol,
+        method,
+        statusCode,
+        ip.replace('::ffff:', ''),
+        originalUrl
+      ].join(' ')
+
+      logger.info(message)
     })
 
     next()
@@ -97,8 +102,8 @@ try {
     res.end()
   })
 
-  app.use('/auth', require(path.join(__dirname, 'routes', 'auth.js')))
-  app.use('/oauth', require(path.join(__dirname, 'routes', 'oauth.js')))
+  app.use('/auth', routes.auth)
+  app.use('/oauth', routes.oauth)
 
   app.use((req, res) => {
     const payload = {
@@ -130,7 +135,7 @@ try {
     logger.error(err)
   }) */
 
-  const port = config.http_port
+  const port = config.port.http
   app.listen(port, () => logger.info(`HTTP listening: ${port}`))
 } catch (err) {
   console.log(err)

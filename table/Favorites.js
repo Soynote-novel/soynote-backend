@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
 
+module.exports.name = 'favorites'
+
 module.exports.config = {
   timestamps: true
 }

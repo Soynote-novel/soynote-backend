@@ -1,51 +1,59 @@
-const db = require('../db')
+const table = require('../table')
 
-module.exports.findById = async (id) => {
-  let user = await db.OAuth.findOne({
-    where: { id },
-    include: { model: db.User }
-  })
-  if (user) {
-    let result = user.dataValues
-    result.user = user.dataValues.user.dataValues
-    return result
+const SUCCESS = true
+
+class OAuth {
+  static async findById (id) {
+    const payload = {
+      where: { id },
+      include: { model: table.User }
+    }
+    const user = await table.OAuth.findOne(payload)
+
+    if (user) {
+      return { user: user.dataValues.user.dataValues }
+    }
+  }
+
+  static async findByUserId (userId) {
+    const payload = {
+      where: { userId },
+      include: { model: table.User }
+    }
+    const user = await table.OAuth.findOne(payload)
+
+    if (user) {
+      return { user: user.dataValues.user.dataValues }
+    }
+  }
+
+  static async findByOAuth (oAuthId, vendor) {
+    const payload = {
+      where: { oAuthId, vendor },
+      include: { model: table.User }
+    }
+    const user = await table.OAuth.findOne(payload)
+
+    if (user) {
+      return { user: user.dataValues.user.dataValues }
+    }
+  }
+
+  static async createUser ({ userId, oAuthId, vendor, accessToken }) {
+    const payload = { userId, oAuthId, vendor, accessToken }
+
+    await table.OAuth.create(payload)
+
+    return SUCCESS
+  }
+
+  static async createDummyUser ({ oAuthId, vendor, accessToken }) {
+    const payload = { oAuthId, vendor, accessToken }
+
+    await table.OAuth.create(payload)
+
+    return SUCCESS
   }
 }
 
-module.exports.findByUserId = async (userId) => {
-  let user = await db.OAuth.findOne({
-    where: { userId },
-    include: { model: db.User }
-  })
-  if (user) {
-    let result = user.dataValues
-    result.user = user.dataValues.user.dataValues
-    return result
-  }
-}
-
-module.exports.findByOauth = async (oauthId, vendor) => {
-  let user = await db.OAuth.findOne({
-    where: { oauthId, vendor },
-    include: { model: db.User }
-  })
-  if (user) {
-    let result = user.dataValues
-    result.user = user.dataValues.user.dataValues
-    return result
-  }
-}
-
-module.exports.createUser = async ({userId, oauthId, vendor, accessToken}) => {
-  await db.OAuth.create({
-    userId, oauthId, vendor, accessToken
-  })
-  return true
-}
-
-module.exports.createDummyUser = async ({oauthId, vendor, accessToken}) => {
-  await db.OAuth.create({
-    oauthId, vendor, accessToken
-  })
-  return true
-}
+module.exports = OAuth

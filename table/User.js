@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
 
+module.exports.name = 'user'
+
 module.exports.config = {
   timestamps: true
 }
