@@ -135,7 +135,7 @@ try {
     logger.error(err)
   }) */
 
-  const port = config.port.http
+  const port = config['http_port']
   app.listen(port, () => logger.info(`HTTP listening: ${port}`))
 } catch (err) {
   console.log(err)

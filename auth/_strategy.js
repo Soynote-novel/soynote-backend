@@ -1,6 +1,6 @@
 const model = require('../model')
 
-module.exports = (process, vendor) => {
+module.exports = (vendor) => {
   return async (req, accessToken, refreshToken, profile, done) => {
     const user = await model.OAuth.findByOAuth(profile.id, vendor)
 
@@ -16,6 +16,6 @@ module.exports = (process, vendor) => {
       oAuthId: profile.id
     }
 
-    return done(null, result)
+    done(null, result)
   }
 }

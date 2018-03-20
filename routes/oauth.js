@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const passport = require('passport')
 
-const auth = require('../auth')
+const auth = require('../auth/index')
 
 router.all('/', (req, res) => {
   res.status(404)
@@ -23,7 +23,7 @@ const configurePassport = ({ vendor, Strategy, strategyConfig }) => {
   router.get(`/${vendor}`, passport.authenticate(vendor))
   router.get(`/${vendor}/callback`, passport.authenticate(vendor, option))
 
-  passport.use(new Strategy(strategyConfig, auth._strategy(process, vendor)))
+  passport.use(new Strategy(strategyConfig, auth._strategy(vendor)))
 }
 
 configurePassport(auth.facebook)

@@ -2,7 +2,7 @@ const {
   consumerKey,
   consumerSecret,
   callbackURL
-} = require('../auth.json')
+} = require('../auth.json').twitter
 
 module.exports.vendor = 'twitter'
 
