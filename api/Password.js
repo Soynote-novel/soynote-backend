@@ -1,20 +1,21 @@
 const crypto = require('crypto').createHash('sha256')
 const bcrypt = require('bcrypt')
 
-module.exports = class Password {
-  static createHash (plain) {
-    return crypto.update(plain).digest('hex')
-  }
+// private method
+const createHash = (plain) => crypto.update(plain).digest('hex')
 
-  static async create (plain) {
-    const hash = await bcrypt.hash(this.create(plain), 12)
+class Password {
+  static async signature (plain) {
+    const hash = await bcrypt.hash(createHash(plain), 12)
 
     return hash
   }
 
   static async isValid (plain, target) {
-    const isEqual = await bcrypt.compare(this.create(plain), target)
+    const isEqual = await bcrypt.compare(createHash(plain), target)
 
     return isEqual
   }
 }
+
+module.exports = Password

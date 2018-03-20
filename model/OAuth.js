@@ -2,7 +2,7 @@ const table = require('../table')
 
 const SUCCESS = true
 
-module.exports = class OAuth {
+class OAuth {
   static async findById (id) {
     const payload = {
       where: { id },
@@ -55,3 +55,5 @@ module.exports = class OAuth {
     return SUCCESS
   }
 }
+
+module.exports = OAuth

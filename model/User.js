@@ -3,7 +3,7 @@ const table = require('../table')
 
 const SUCCESS = true
 
-module.exports = class User {
+class User {
   static async findById (id) {
     const payload = {
       where: { id }
@@ -34,10 +34,12 @@ module.exports = class User {
   static async register ({ email, password, nickname }) {
     await table.User.create({
       email,
-      password: Password.create(password),
+      password: Password.signature(password),
       nickname
     })
 
     return SUCCESS
   }
 }
+
+module.exports = User
