@@ -34,7 +34,7 @@ class User {
   static async register ({ email, password, nickname }) {
     await table.User.create({
       email,
-      password: Password.signature(password),
+      password: await Password.signature(password),
       nickname
     })
 
