@@ -39,20 +39,36 @@ class OAuth {
     }
   }
 
-  static async createUser ({ userId, oAuthId, vendor, accessToken }) {
-    const payload = { userId, oAuthId, vendor, accessToken }
+  static async createUser ({ userId, oAuthId, vendor }) {
+    const payload = { userId, oAuthId, vendor }
 
     await table.OAuth.create(payload)
 
     return SUCCESS
   }
 
-  static async createDummyUser ({ oAuthId, vendor, accessToken }) {
-    const payload = { oAuthId, vendor, accessToken }
+  static async createDummyUser ({ oAuthId, vendor }) {
+    const payload = { oAuthId, vendor }
 
     await table.OAuth.create(payload)
 
     return SUCCESS
+  }
+
+  static async successRegister ({ userId, oAuthId, vendor }) {
+    const where = {
+      where: { oAuthId, vendor }
+    }
+
+    let result = await table.OAuth.findOne(where)
+
+    if (result.dataValues && !result.dataValues.userId) {
+      const payload = { userId }
+
+      await table.OAuth.update(payload, where)
+
+      return SUCCESS
+    }
   }
 }
 
