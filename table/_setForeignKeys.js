@@ -2,7 +2,10 @@
 const setFK = (originTable, target) => {
   const [origin, foreignKey] = originTable
 
-  origin.hasMany(target, { foreignKey })
+  origin.hasMany(target, { foreignKey,
+    onDelete: 'cascade',
+    onUpdate: 'cascade'
+  })
 }
 
 module.exports = (tables) => {
