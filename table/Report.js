@@ -16,7 +16,7 @@ module.exports.table = {
   },
   writer: {
     type: Sequelize.UUID,
-    allowNull: false
+    allowNull: true
   },
   type: {
     type: Sequelize.CHAR(10),

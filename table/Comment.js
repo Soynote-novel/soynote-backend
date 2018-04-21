@@ -16,6 +16,10 @@ module.exports.table = {
   },
   writer: {
     type: Sequelize.UUID,
+    allowNull: true
+  },
+  novel: {
+    type: Sequelize.UUID,
     allowNull: false
   },
   episode: {
