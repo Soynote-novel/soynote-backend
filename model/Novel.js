@@ -52,13 +52,9 @@ class Novel {
 
   static async editNovel ({id, bio}) {
     const payload = {
-      where: {
-        id
-      }
+      where: { id }
     }
-    const editInformation = {
-      bio
-    }
+    const editInformation = { bio }
 
     await table.Novel.update(editInformation, payload)
 

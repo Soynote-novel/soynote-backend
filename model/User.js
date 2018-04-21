@@ -24,7 +24,7 @@ class User {
 
   static async findByNick (nickname) {
     const payload = {
-      wehre: { nickname }
+      where: { nickname }
     }
     const user = await table.User.findOne(payload)
 
@@ -32,11 +32,12 @@ class User {
   }
 
   static async register ({ email, password, nickname }) {
-    await table.User.create({
+    const payload = {
       email,
       password: await Password.signature(password),
       nickname
-    })
+    }
+    await table.User.create(payload)
 
     return SUCCESS
   }
