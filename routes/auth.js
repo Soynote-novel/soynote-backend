@@ -43,7 +43,6 @@ router.post('/login', async (req, res) => {
 
   const isValidPassword = await Password.isValid(originPassword, targetPassword)
   if (isValidPassword) {
-    req.session = { id, email, nickname, isAdmin }
 
     const payload = {
       success: true

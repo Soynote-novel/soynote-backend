@@ -6,9 +6,8 @@ module.exports = (vendor) => {
 
     if (user) {
       const { id, email, nickname, isAdmin } = user.user
-      req.session = { id, email, nickname, isAdmin }
     } else {
-      req.session.requireRegister = true
+      let requireRegister = true
     }
 
     const result = {

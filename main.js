@@ -5,7 +5,7 @@ const express = require('express')
 const onFinished = require('on-finished')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const session = require('express-session')
+const cookieParser = requrie('cookie-parser')
 const passport = require('passport')
 
 // const bluebird = require('bluebird')
@@ -49,16 +49,12 @@ try {
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(bodyParser.json())
 
-  app.use(session({
-    secret: 'wafflet',
-    resave: false,
-    saveUninitialized: true
-  }))
+  app.use(cookieParser())
 
   app.use(passport.initialize())
   app.use(passport.session())
 
-  app.use(cors({ origin: 'http://127.0.0.1:3000' }))
+  app.use(cors({ origin: config.CORS }))
 
   // health moniter
   app.all('/health', (req, res) => {

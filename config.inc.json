@@ -27,5 +27,6 @@
       "logging": false
     }
   },
-  "recaptcha": "your recaptcha site secret"
+  "recaptcha": "your recaptcha site secret",
+  "CORS": "your cors setting as here"
 }
