@@ -5,7 +5,19 @@ const { Password } = require('../api')
 const JWT = require('../api/jwt')
 
 router.post('/login', async (req, res) => {
-  const user = await model.User.findByEmail(req.email)
+  const user = await model.User.findByEmail(req.body.email)
+
+  if (user === false) {
+    const payload = {
+      error: 'user not found'
+    }
+
+    res.status(404)
+    res.jsonp(payload)
+    res.end()
+
+    return
+  }
 
   if (user.isBlocked) {
     const payload = {
@@ -20,7 +32,7 @@ router.post('/login', async (req, res) => {
     return
   }
 
-  if (user.verified) {
+  if (!user.verified) {
     const payload = {
       error: 'this is not verified account',
       notVerified: true
@@ -40,8 +52,8 @@ router.post('/login', async (req, res) => {
     password: targetPassword,
     isAdmin
   } = user
-  const originPassword = req.body.password
 
+  const originPassword = req.body.password
   const isValidPassword = await Password.isValid(originPassword, targetPassword)
   if (isValidPassword) {
     const payload = {
@@ -61,6 +73,8 @@ router.post('/login', async (req, res) => {
     res.status(200)
     res.jsonp(payload)
     res.end()
+
+    await model.RecentIP.log({ user: id, ip: req.ip.replace('::ffff:', '') })
   }
 })
 

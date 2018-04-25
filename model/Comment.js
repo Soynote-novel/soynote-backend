@@ -14,7 +14,7 @@ class Comment {
     return (!!comment) && comment.dataValues
   }
 
-  static async findByEpisode (episode) {
+  static async averageByEpisode (episode) {
     const payload = {
       attributes: [[sequelize.fn('AVG', sequelize.col('score'))]],
       where: { episode }
@@ -24,7 +24,7 @@ class Comment {
     return (!!comment) && comment.dataValues
   }
 
-  static async findByNovel (novel) {
+  static async averageByNovel (novel) {
     const payload = {
       attributes: [[sequelize.fn('AVG', sequelize.col('score'))]],
       where: { novel }

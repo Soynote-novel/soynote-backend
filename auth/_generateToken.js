@@ -1,3 +1,4 @@
+const model = require('../model')
 const JWT = require('../api/jwt')
 
 module.exports = async (req, res) => {
@@ -10,4 +11,6 @@ module.exports = async (req, res) => {
   res.status(200)
   res.jsonp(req.user)
   res.end()
+
+  await model.RecentIP.log({ user: req.user.id, ip: req.ip.replace('::ffff:', '') })
 }

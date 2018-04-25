@@ -51,9 +51,5 @@ module.exports.table = {
     type: Sequelize.CHAR(80),
     allowNull: true,
     unique: false
-  },
-  recentIp: {
-    type: Sequelize.JSON,
-    allowNull: true
   }
 }

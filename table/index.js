@@ -13,7 +13,8 @@ const tables = {
   Report: defineTable(require('./Report')),
   Hashtag: defineTable(require('./Hashtag')),
   SubscribedAuthors: defineTable(require('./SubscribedAuthors')),
-  Favorites: defineTable(require('./Favorites'))
+  Favorites: defineTable(require('./Favorites')),
+  RecentIP: defineTable(require('./RecentIP'))
 }
 
 setForeignKeys(tables)
