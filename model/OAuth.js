@@ -11,7 +11,10 @@ class OAuth {
     const user = await table.OAuth.findOne(payload)
 
     if (user) {
-      return { user: user.dataValues.user.dataValues }
+      const result = { oauth: user.dataValues }
+      result.user = user.dataValues.user ? user.dataValues.user.dataValues : ''
+      delete result.oauth.user
+      return result
     }
   }
 
@@ -23,7 +26,10 @@ class OAuth {
     const user = await table.OAuth.findOne(payload)
 
     if (user) {
-      return { user: user.dataValues.user.dataValues }
+      const result = { oauth: user.dataValues }
+      result.user = user.dataValues.user ? user.dataValues.user.dataValues : ''
+      delete result.oauth.user
+      return result
     }
   }
 
@@ -35,7 +41,10 @@ class OAuth {
     const user = await table.OAuth.findOne(payload)
 
     if (user) {
-      return { user: user.dataValues.user.dataValues }
+      const result = { oauth: user.dataValues }
+      result.user = user.dataValues.user ? user.dataValues.user.dataValues : ''
+      delete result.oauth.user
+      return result
     }
   }
 

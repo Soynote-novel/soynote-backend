@@ -10,5 +10,6 @@ module.exports.Strategy = require('passport-kakao').Strategy
 module.exports.strategyConfig = {
   clientID,
   callbackURL,
-  passReqToCallback: true
+  passReqToCallback: true,
+  session: false
 }

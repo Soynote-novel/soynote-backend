@@ -5,7 +5,7 @@ const express = require('express')
 const onFinished = require('on-finished')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const cookieParser = requrie('cookie-parser')
+const cookieParser = require('cookie-parser')
 const passport = require('passport')
 
 // const bluebird = require('bluebird')

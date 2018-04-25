@@ -17,5 +17,6 @@ module.exports.strategyConfig = {
     'profile',
     'email',
     'https://www.googleapis.com/auth/plus.login'
-  ]
+  ],
+  session: false
 }

@@ -12,5 +12,6 @@ module.exports.strategyConfig = {
   consumerKey,
   consumerSecret,
   callbackURL,
-  passReqToCallback: true
+  passReqToCallback: true,
+  session: false
 }

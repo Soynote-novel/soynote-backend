@@ -2,3 +2,5 @@ node_modules
 .vscode
 config.json
 auth.json
+private.pem
+public.pem

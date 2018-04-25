@@ -17,5 +17,6 @@ module.exports.strategyConfig = {
     'id',
     'name',
     'displayName'
-  ]
+  ],
+  session: false
 }

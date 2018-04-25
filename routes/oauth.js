@@ -9,19 +9,15 @@ router.all('/', (req, res) => {
   res.end()
 })
 
-// passport configure
-passport.serializeUser((user, done) => done(null, user))
-passport.deserializeUser((obj, done) => done(null, obj))
-
 // passport auth configure
 const configurePassport = ({ vendor, Strategy, strategyConfig }) => {
   const option = {
-    successRedirect: '/oauth/loginsuccess',
-    failureRedirect: '/oauth/loginfail'
+    failureRedirect: '/oauth/loginfail',
+    session: false
   }
 
   router.get(`/${vendor}`, passport.authenticate(vendor))
-  router.get(`/${vendor}/callback`, passport.authenticate(vendor, option))
+  router.get(`/${vendor}/callback`, passport.authenticate(vendor, option), auth._generateToken)
 
   passport.use(new Strategy(strategyConfig, auth._strategy(vendor)))
 }
@@ -34,11 +30,10 @@ configurePassport(auth.twitter)
 
 // oauth success
 router.get('/loginsuccess', (req, res) => {
-  console.log(req.session)
-
-  const message = (req.session.require)
+  /* const message = (req.)
     ? 'oauth success, require register'
-    : 'oauth success, user is valid'
+    : 'oauth success, user is valid' */
+  const message = 'oauth success'
 
   res.status(200)
   res.send(message)

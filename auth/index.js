@@ -1,5 +1,6 @@
 // util
 module.exports._strategy = require('./_strategy')
+module.exports._generateToken = require('./_generateToken')
 
 // vendor
 module.exports.facebook = require('./facebook')

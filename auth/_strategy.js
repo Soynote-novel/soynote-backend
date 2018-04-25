@@ -2,19 +2,20 @@ const model = require('../model')
 
 module.exports = (vendor) => {
   return async (req, accessToken, refreshToken, profile, done) => {
-    const user = await model.OAuth.findByOAuth(profile.id, vendor)
+    const result = await model.OAuth.findByOAuth(profile.id, vendor)
 
-    if (user) {
-      const { id, email, nickname, isAdmin } = user.user
+    let payload
+
+    if (result.user && result.user.id) {
+      const { id, email, nickname, isAdmin } = result.user
+      payload = { id, email, nickname, isAdmin, vendor, oAuthId: profile.id, requireRegister: false }
+    } else if (result.user && !result.user) {
+      payload = { vendor, oAuthId: profile.id, requireRegister: true }
     } else {
-      let requireRegister = true
+      await model.OAuth.createDummyUser({oAuthId: profile.id, vendor})
+      payload = { vendor, oAuthId: profile.id, requireRegister: true }
     }
 
-    const result = {
-      vendor,
-      oAuthId: profile.id
-    }
-
-    done(null, result)
+    done(null, payload)
   }
 }

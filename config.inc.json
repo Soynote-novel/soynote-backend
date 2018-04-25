@@ -27,6 +27,13 @@
       "logging": false
     }
   },
+  "jwt": {
+    "public": "your rsa public key here",
+    "private": "your rsa private key here",
+    "issuer": "your jwt issuer here",
+    "subject": "your jwt subject here",
+    "maxAge": "your jwt maxAge here"
+  },
   "recaptcha": "your recaptcha site secret",
   "CORS": "your cors setting as here"
 }
