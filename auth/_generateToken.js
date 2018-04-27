@@ -1,5 +1,5 @@
 const model = require('../model')
-const JWT = require('../api/jwt')
+const { JWT } = require('../api')
 
 module.exports = async (req, res) => {
   const token = await JWT.createToken(req.user) // create jwt token

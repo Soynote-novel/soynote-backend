@@ -1,8 +1,7 @@
 const router = require('express').Router()
 
 const model = require('../model')
-const { Password } = require('../api')
-const JWT = require('../api/jwt')
+const { Password, JWT } = require('../api')
 
 router.post('/login', async (req, res) => {
   const user = await model.User.findByEmail(req.body.email)
