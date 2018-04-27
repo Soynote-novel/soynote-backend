@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
 const model = require('../model')
-const { Password, JWT } = require('../api')
+const { Password, JWT, LoginCheck } = require('../api')
 
 router.post('/login', async (req, res) => {
   const user = await model.User.findByEmail(req.body.email)
@@ -75,6 +75,16 @@ router.post('/login', async (req, res) => {
 
     await model.RecentIP.log({ user: id, ip: req.ip.replace('::ffff:', '') })
   }
+})
+
+router.get('/check', LoginCheck, async (req, res) => {
+  const { id, email, nickname, isAdmin } = req.token
+
+  const payload = { id, email, nickname, isAdmin }
+
+  res.status('200')
+  res.send(payload)
+  res.end()
 })
 
 module.exports = router
