@@ -1,9 +1,9 @@
 const router = require('express').Router()
 
 const model = require('../model')
-const { Password, JWT, LoginCheck } = require('../api')
+const { Password, JWT, LoginCheck, isNotLogin } = require('../api')
 
-router.post('/login', async (req, res) => {
+router.post('/login', isNotLogin, async (req, res) => {
   const user = await model.User.findByEmail(req.body.email)
 
   if (user === false) {
