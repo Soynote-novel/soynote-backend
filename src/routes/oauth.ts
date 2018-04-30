@@ -1,5 +1,4 @@
 const router = require('express').Router()
-const passport = require('passport')
 
 const auth = require('../auth/index')
 

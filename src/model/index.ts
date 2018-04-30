@@ -1,8 +1,19 @@
-module.exports.User = require('./User')
-module.exports.OAuth = require('./OAuth')
-module.exports.Novel = require('./Novel')
-module.exports.Hashtag = require('./Hashtag')
-module.exports.Episode = require('./Episode')
-module.exports.Comment = require('./Comment')
-module.exports.Favorites = require('./Favorites')
-module.exports.RecentIP = require('./RecentIP')
+import User from './User'
+import OAuth from './OAuth'
+import Novel from './Novel'
+import Hashtag from './Hashtag'
+import Episode from './Episode'
+import Comment from './Comment'
+import Favorites from './Favorites'
+import RecentIP from './RecentIP'
+
+export {
+    User,
+    OAuth,
+    Novel,
+    Hashtag,
+    Episode,
+    Comment,
+    Favorites,
+    RecentIP
+}

@@ -15,7 +15,7 @@ const passport = require('passport')
 require('express-async-errors')
 
 const config = require('./config.json')
-const routes = require('./routes')
+import * as routes from './routes'
 
 const app = express()
 const logger = log4js.getLogger()
