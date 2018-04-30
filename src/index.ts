@@ -1,20 +1,20 @@
 'use strict'
 
-const log4js = require('log4js')
-const express = require('express')
-const onFinished = require('on-finished')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const cookieParser = require('cookie-parser')
-const passport = require('passport')
+import * as log4js from 'log4js'
+import * as express from 'express'
+import * as onFinished from 'on-finished'
+import * as bodyParser from 'body-parser'
+import * as cors from 'cors'
+import * as cookieParser from 'cookie-parser'
+import * as passport from 'passport'
 
 // const bluebird = require('bluebird')
 // const redis = require('redis')
 
 // if use async function on express router, help to error logging
-require('express-async-errors')
+import 'express-async-errors'
 
-const config = require('./config.json')
+import config from './config.json'
 import * as routes from './routes'
 
 const app = express()
@@ -52,7 +52,6 @@ try {
   app.use(cookieParser())
 
   app.use(passport.initialize())
-  app.use(passport.session())
 
   app.use(cors({ origin: config.CORS }))
 

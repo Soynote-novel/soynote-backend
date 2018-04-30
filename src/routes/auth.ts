@@ -1,7 +1,9 @@
-const router = require('express').Router()
+import { Router } from 'express'
 
-const model = require('../model')
-const { Password, JWT, LoginCheck, isNotLogin } = require('../api')
+const router = Router()
+
+import * as model from '../model'
+import { Password, JWT, LoginCheck, isNotLogin } from '../api'
 
 router.post('/login', isNotLogin, async (req, res) => {
   const user = await model.User.findByEmail(req.body.email)
@@ -82,9 +84,9 @@ router.get('/check', LoginCheck, async (req, res) => {
 
   const payload = { id, email, nickname, isAdmin }
 
-  res.status('200')
+  res.status(200)
   res.send(payload)
   res.end()
 })
 
-module.exports = router
+export default router

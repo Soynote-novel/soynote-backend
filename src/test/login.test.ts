@@ -1,5 +1,5 @@
 const model = require('../model')
-const { Password } = require('../api')
+import { Password } from '../api'
 
 class Test {
   static async isValid () {

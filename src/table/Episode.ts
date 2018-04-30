@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize')
+import * as Sequelize from 'sequelize'
 
 module.exports.name = 'episode'
 

@@ -1,6 +1,8 @@
-const router = require('express').Router()
+import { Router } from 'express'
 
-const auth = require('../auth/index')
+const router = Router()
+
+import * as auth from '../auth/index'
 
 router.all('/', (req, res) => {
   res.status(404)
@@ -45,4 +47,4 @@ router.get('/loginfail', (req, res) => {
   res.end()
 })
 
-module.exports = router
+export default router

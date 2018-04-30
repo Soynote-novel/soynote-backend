@@ -1,4 +1,4 @@
-const model = require('../model')
+import { Password } from '../api'
 
 class Test {
   static async findById () {
