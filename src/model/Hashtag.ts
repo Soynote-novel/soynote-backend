@@ -1,7 +1,7 @@
-const table = require('../table')
+import table from '../table'
 
-const getUnique = (str) => {
-  return str.filter((value, index, self) => {
+const getUnique = (str: string): string => {
+  return str.filter((value: any, index: any, self: any) => {
     return self.indexOf(value) === index
   })
 }
@@ -9,7 +9,7 @@ const getUnique = (str) => {
 // const SUCCESS = true
 
 class Hashtag {
-  static async findByNovel (novel) {
+  static async findByNovel (novel: string) {
     const payload = {
       where: { novel }
     }
@@ -18,7 +18,7 @@ class Hashtag {
     return (!!hashtag) && hashtag.dataValues
   }
 
-  static async findByTag (tag) {
+  static async findByTag (tag: string) {
     const payload = {
       where: { tag }
     }
@@ -27,7 +27,7 @@ class Hashtag {
     return (!!hashtag) && hashtag.dataValues
   }
 
-  static async createTags (tags) {
+  static async createTags (tags: string) {
     const payload = {
       
     }

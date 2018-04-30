@@ -4,11 +4,11 @@ const {
   callbackURL
 } = require('../auth.json').naver
 
-module.exports.vendor = 'naver'
+export let vendor = 'naver'
 
-module.exports.Strategy = require('passport-naver').Strategy
+export let Strategy = require('passport-naver').Strategy
 
-module.exports.strategyConfig = {
+export let strategyConfig = {
   clientID,
   clientSecret,
   callbackURL,

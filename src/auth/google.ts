@@ -4,11 +4,11 @@ const {
   callbackURL
 } = require('../auth.json').google
 
-module.exports.vendor = 'google'
+export let vendor = 'google'
 
-module.exports.Strategy = require('passport-google-oauth2').Strategy
+export let Strategy = require('passport-google-oauth2').Strategy
 
-module.exports.strategyConfig = {
+export let strategyConfig = {
   clientID,
   clientSecret,
   callbackURL,

@@ -1,7 +1,11 @@
-const model = require('../model')
+import model from '../model'
 
-module.exports = (vendor) => {
-  return async (req, accessToken, refreshToken, profile, done) => {
+interface Profile {
+  id: number
+}
+
+module.exports = (vendor: string) => {
+  return async (req: any, accessToken: string, refreshToken: string, profile: Profile, done: any) => {
     const result = await model.OAuth.findByOAuth(profile.id, vendor)
 
     let payload

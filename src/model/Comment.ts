@@ -1,11 +1,11 @@
-const table = require('../table')
+import table from '../table'
 const sequelize = require('sequelize')
 
 const SUCCESS = true
 const FAILURE = false
 
 class Comment {
-  static async findById (id) {
+  static async findById (id: string): Promise<null|object> {
     const payload = {
       where: { id }
     }
@@ -14,7 +14,7 @@ class Comment {
     return (!!comment) && comment.dataValues
   }
 
-  static async averageByEpisode (episode) {
+  static async averageByEpisode (episode: string): Promise<null|object> {
     const payload = {
       attributes: [[sequelize.fn('AVG', sequelize.col('score'))]],
       where: { episode }
@@ -24,7 +24,7 @@ class Comment {
     return (!!comment) && comment.dataValues
   }
 
-  static async averageByNovel (novel) {
+  static async averageByNovel (novel:string): Promise<null|number> {
     const payload = {
       attributes: [[sequelize.fn('AVG', sequelize.col('score'))]],
       where: { novel }
@@ -34,7 +34,8 @@ class Comment {
     return (!!comment) && comment.dataValues
   }
 
-  static async newComment ({ writer, novel, episode, content, score }) {
+  static async newComment (comment: { writer: string, novel: string, episode:string, content:string, score:number }): Promise<boolean> {
+    const { writer, novel, episode, content, score } = comment
     if (!(score >= 0 && score <= 5)) {
       return FAILURE
     } else {
@@ -45,7 +46,8 @@ class Comment {
     }
   }
 
-  static async editComment ({ id, content, score }) {
+  static async editComment (comment: { id: string, content: string, score:number }) {
+    const { id, content, score } = comment
     if (!(score >= 0 && score <= 5)) {
       return FAILURE
     } else {
@@ -62,4 +64,4 @@ class Comment {
   }
 }
 
-module.exports = Comment
+export default Comment

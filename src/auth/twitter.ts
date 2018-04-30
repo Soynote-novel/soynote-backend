@@ -4,11 +4,11 @@ const {
   callbackURL
 } = require('../auth.json').twitter
 
-module.exports.vendor = 'twitter'
+export let vendor = 'twitter'
 
-module.exports.Strategy = require('passport-twitter').Strategy
+export let Strategy = require('passport-twitter').Strategy
 
-module.exports.strategyConfig = {
+export let strategyConfig = {
   consumerKey,
   consumerSecret,
   callbackURL,

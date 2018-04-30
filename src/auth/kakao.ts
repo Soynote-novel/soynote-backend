@@ -3,11 +3,11 @@ const {
   callbackURL
 } = require('../auth.json').kakao
 
-module.exports.vendor = 'kakao'
+export let vendor = 'kakao'
 
-module.exports.Strategy = require('passport-kakao').Strategy
+export let Strategy = require('passport-kakao').Strategy
 
-module.exports.strategyConfig = {
+export let strategyConfig = {
   clientID,
   callbackURL,
   passReqToCallback: true,

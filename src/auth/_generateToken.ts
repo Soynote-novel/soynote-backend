@@ -1,7 +1,7 @@
 const model = require('../model')
-const { JWT } = require('../api')
+import { JWT } from '../api'
 
-module.exports = async (req, res) => {
+module.exports = async (req: any, res: any): Promise<void> => {
   const token = await JWT.createToken(req.user) // create jwt token
 
   res.cookie('sessToken', token, {

@@ -4,11 +4,11 @@ const {
   callbackURL
 } = require('../auth.json').facebook
 
-module.exports.vendor = 'facebook'
+export let vendor = 'facebook'
 
-module.exports.Strategy = require('passport-facebook').Strategy
+export let Strategy = require('passport-facebook').Strategy
 
-module.exports.strategyConfig = {
+export let strategyConfig = {
   clientID,
   clientSecret,
   callbackURL,

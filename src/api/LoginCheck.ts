@@ -1,6 +1,6 @@
-const { JWT } = require('../api')
+import { JWT } from '../api'
 
-module.exports = async (req, res, next) => {
+export default async (req: any, res: any, next: any) => {
   if (!req.headers && !req.headers.authorization) {
     const payload = { valid: false, status: 'Please log in' }
     res.status(400)

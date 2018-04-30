@@ -1,9 +1,9 @@
-const table = require('../table')
+import table from '../table'
 
 const SUCCESS = true
 
 class Episode {
-  static async findById (id) {
+  static async findById (id: string): Promise<boolean|object> {
     const payload = {
       where: { id }
     }
@@ -12,7 +12,7 @@ class Episode {
     return (!!episode) && episode.dataValues
   }
 
-  static async findByNovel (novel) {
+  static async findByNovel (novel: string): Promise<boolean|object> {
     const payload = {
       where: { novel }
     }
@@ -21,16 +21,15 @@ class Episode {
     return (!!episode) && episode.dataValues
   }
 
-  static async newNovel ({ name, novel, isAdult, content, poster }) {
-    const payload = {
-      name, novel, isAdult, content, poster
-    }
+  static async newNovel (novelInfo: { name: string, novel: string, isAdult: boolean, content: string, poster: string }): Promise<boolean> {
+    const payload = novelInfo
     await table.Episode.create(payload)
 
     return SUCCESS
   }
 
-  static async editNovel ({ id, name, isAdult, content, poster }) {
+  static async editNovel (novelInfo: { id: string, name: string, isAdult: boolean, content: string, poster: string }): Promise<boolean> {
+    const { id, name, isAdult, content, poster } = novelInfo
     const payload = {
       where: { id }
     }
@@ -43,4 +42,4 @@ class Episode {
   }
 }
 
-module.exports = Episode
+export default Episode
