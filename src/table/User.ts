@@ -1,12 +1,12 @@
 import * as Sequelize from 'sequelize'
 
-module.exports.name = 'user'
+export let name = 'user'
 
-module.exports.config = {
+export let config = {
   timestamps: true
 }
 
-module.exports.table = {
+export let table = {
   id: {
     type: Sequelize.UUID,
     allowNull: false,

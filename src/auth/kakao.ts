@@ -1,7 +1,7 @@
 const {
   clientID,
   callbackURL
-} = require('../auth.json').kakao
+} = require('../../auth.json').kakao
 
 export let vendor = 'kakao'
 

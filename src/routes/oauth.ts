@@ -1,8 +1,9 @@
 import { Router } from 'express'
+import * as passport from 'passport'
 
 const router = Router()
 
-import * as auth from '../auth/index'
+import * as auth from '../auth'
 
 router.all('/', (req, res) => {
   res.status(404)
@@ -11,7 +12,8 @@ router.all('/', (req, res) => {
 })
 
 // passport auth configure
-const configurePassport = ({ vendor, Strategy, strategyConfig }) => {
+const configurePassport = (configure: { vendor: string, Strategy: any, strategyConfig: any }) => {
+  const { vendor, Strategy, strategyConfig } = configure
   const option = {
     failureRedirect: '/oauth/loginfail',
     session: false

@@ -2,7 +2,7 @@ const {
   clientID,
   clientSecret,
   callbackURL
-} = require('../auth.json').google
+} = require('../../auth.json').google
 
 export let vendor = 'google'
 

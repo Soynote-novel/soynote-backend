@@ -1,22 +1,27 @@
-const Table = require('./_Table')
-const setForeignKeys = require('./_setForeignKeys')
+import Table from  './_Table'
+import setForeignKeys from './_setForeignKeys'
+import * as tableList from './_tables'
 
-const defineTable = ({ name, table, config }) =>
-  Table.define(name, table, config)
+const defineTable = (tableConfig: { name: any, table: any, config: any }): any => {
+  const { name, table, config } = tableConfig
+  return Table.define(name, table, config)
+}
 
 const tables = {
-  User: defineTable(require('./User')),
-  OAuth: defineTable(require('./OAuth')),
-  Novel: defineTable(require('./Novel')),
-  Episode: defineTable(require('./Episode')),
-  Comment: defineTable(require('./Comment')),
-  Report: defineTable(require('./Report')),
-  Hashtag: defineTable(require('./Hashtag')),
-  SubscribedAuthors: defineTable(require('./SubscribedAuthors')),
-  Favorites: defineTable(require('./Favorites')),
-  RecentIP: defineTable(require('./RecentIP'))
+  User: defineTable(tableList.User),
+  OAuth: defineTable(tableList.OAuth),
+  Novel: defineTable(tableList.Novel),
+  Episode: defineTable(tableList.Episode),
+  Comment: defineTable(tableList.Comment),
+  Report: defineTable(tableList.Report),
+  Hashtag: defineTable(tableList.Hashtag),
+  SubscribedAuthors: defineTable(tableList.SubscribedAuthors),
+  Favorites: defineTable(tableList.Favorites),
+  RecentIP: defineTable(tableList.RecentIP)
 }
 
 setForeignKeys(tables)
 
-module.exports = tables
+Table.sync()
+
+export default tables

@@ -1,13 +1,9 @@
-const table = require('../table')
+import table from '../table'
 
 const SUCCESS = true
 
 class OAuth {
-  /**
-   * OAuth 고유ID로 유저의 정보를 찾습니다.
-   * @param {string} id OAuth 고유ID
-   */
-  static async findById (id) {
+  static async findById (id: string): Promise<any> {
     const payload = {
       where: { id },
       include: { model: table.User }
@@ -21,14 +17,10 @@ class OAuth {
       }
       delete result.oauth.user
       return result
-    }
+    } else return null
   }
 
-  /**
-   * User 고유ID로 유저의 정보를 찾습니다.
-   * @param {string} userId User 고유ID
-   */
-  static async findByUserId (userId) {
+  static async findByUserId (userId: string): Promise<any> {
     const payload = {
       where: { userId },
       include: { model: table.User }
@@ -42,15 +34,10 @@ class OAuth {
       }
       delete result.oauth.user
       return result
-    }
+    } else return null
   }
 
-  /**
-   * OAuth 정보로 유저의 정보를 찾습니다.
-   * @param {number} oAuthId vendor에서 제공한 유저의 고유id입니다
-   * @param {string} vendor OAuth 제공사의 고유코드입니다.
-   */
-  static async findByOAuth (oAuthId, vendor) {
+  static async findByOAuth (oAuthId: number, vendor: string): Promise<any> {
     const payload = {
       where: { oAuthId, vendor },
       include: { model: table.User }
@@ -64,17 +51,10 @@ class OAuth {
       }
       delete result.oauth.user
       return result
-    }
+    } else return null
   }
 
-  /**
-   * 유저의 OAuth 정보를 생성합니다.
-   * @param {Object} user 생성할 유저의 상세정보입니다.
-   * @param {string} user.userId 유저 고유ID
-   * @param {number} user.oAuthId Vendor에서 제공하는 유저의 고유ID
-   * @param {string} user.vendor OAuth 제공사의 고유코드
-   */
-  static async createUser (user) {
+  static async createUser (user: { userId: string, oAuthId: number, vendor: string }): Promise<boolean> {
     const { userId, oAuthId, vendor } = user
     const payload = { userId, oAuthId, vendor }
 
@@ -83,13 +63,7 @@ class OAuth {
     return SUCCESS
   }
 
-  /**
-   * OAuth 연동이 수행되지 않은 더미유저를 생성합니다.
-   * @param {Object} user 생성할 더미유저의 상세정보입니다.
-   * @param {number} user.oAuthId Vendor에서 제공하는 유저의 고유ID
-   * @param {string} user.vendor OAuth 제공사의 고유코드
-   */
-  static async createDummyUser (user) {
+  static async createDummyUser (user: { oAuthId: number, vendor: string }): Promise<boolean> {
     const { oAuthId, vendor } = user
     const payload = { oAuthId, vendor }
 
@@ -98,14 +72,7 @@ class OAuth {
     return SUCCESS
   }
 
-  /**
-   * 더미유저의 회원가입을 완료시킵니다.
-   * @param {Object} user 더미유저 및 회원의 정보입니다.
-   * @param {string} user.userId 회원가입한 유저의 정보입니다.
-   * @param {number} user.oAuthId 더미유저의 OAuth ID입니다.
-   * @param {string} user.vendor 더미유저의 OAuth 제공사 고유코드입니다.
-   */
-  static async successRegister (user) {
+  static async successRegister (user: { userId: string, oAuthId: number, vendor: string }): Promise<boolean> {
     const { userId, oAuthId, vendor } = user
     const where = {
       where: { oAuthId, vendor }
@@ -113,14 +80,14 @@ class OAuth {
 
     let result = await table.OAuth.findOne(where)
 
-    if (result.dataValues && !result.dataValues.userId) {
+    if (result.dataValues && !result.dataValues.user.dataValues.userId) {
       const payload = { userId }
 
       await table.OAuth.update(payload, where)
 
       return SUCCESS
-    }
+    } else return false
   }
 }
 
-module.exports = OAuth
+export default OAuth

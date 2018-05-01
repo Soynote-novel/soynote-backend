@@ -2,7 +2,7 @@ const {
   clientID,
   clientSecret,
   callbackURL
-} = require('../auth.json').facebook
+} = require('../../auth.json').facebook
 
 export let vendor = 'facebook'
 

@@ -14,7 +14,7 @@ import * as passport from 'passport'
 // if use async function on express router, help to error logging
 import 'express-async-errors'
 
-import config from './config.json'
+const config = require('../config.json')
 import * as routes from './routes'
 
 const app = express()

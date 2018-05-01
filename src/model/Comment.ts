@@ -5,7 +5,7 @@ const SUCCESS = true
 const FAILURE = false
 
 class Comment {
-  static async findById (id: string): Promise<null|object> {
+  static async findById (id: string): Promise<object|null> {
     const payload = {
       where: { id }
     }
@@ -14,7 +14,7 @@ class Comment {
     return (!!comment) && comment.dataValues
   }
 
-  static async averageByEpisode (episode: string): Promise<null|object> {
+  static async averageByEpisode (episode: string): Promise<object|null> {
     const payload = {
       attributes: [[sequelize.fn('AVG', sequelize.col('score'))]],
       where: { episode }
@@ -24,7 +24,7 @@ class Comment {
     return (!!comment) && comment.dataValues
   }
 
-  static async averageByNovel (novel:string): Promise<null|number> {
+  static async averageByNovel (novel:string): Promise<number|null> {
     const payload = {
       attributes: [[sequelize.fn('AVG', sequelize.col('score'))]],
       where: { novel }
@@ -46,7 +46,7 @@ class Comment {
     }
   }
 
-  static async editComment (comment: { id: string, content: string, score:number }) {
+  static async editComment (comment: { id: string, content: string, score:number }): Promise<boolean> {
     const { id, content, score } = comment
     if (!(score >= 0 && score <= 5)) {
       return FAILURE

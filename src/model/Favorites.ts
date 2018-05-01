@@ -1,10 +1,10 @@
 import table from '../table'
-// const sequelize = require('sequelize')
+import * as sequelize from 'sequelize'
 
 const SUCCESS = true
 
 class Favorites {
-  static async findByUser (userId: string): Promise<null|object> {
+  static async findByUser (userId: string): Promise<object|null> {
     const payload = {
       where: { userId }
     }
@@ -13,7 +13,7 @@ class Favorites {
     return (!!favorites) && favorites.dataValues
   }
 
-  static async findByNovel (novelId: string): Promise<null|object> {
+  static async findByNovel (novelId: string): Promise<object|null> {
     const payload = {
       where: { novelId }
     }
@@ -42,4 +42,4 @@ class Favorites {
   }
 }
 
-module.exports = Favorites
+export default Favorites

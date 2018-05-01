@@ -1,10 +1,10 @@
-import model from '../model'
+import * as model from '../model'
 
 interface Profile {
   id: number
 }
 
-module.exports = (vendor: string) => {
+export default (vendor: string) => {
   return async (req: any, accessToken: string, refreshToken: string, profile: Profile, done: any) => {
     const result = await model.OAuth.findByOAuth(profile.id, vendor)
 

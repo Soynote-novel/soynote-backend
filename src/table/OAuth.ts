@@ -1,12 +1,12 @@
 import * as Sequelize from 'sequelize'
 
-module.exports.name = 'oAuth'
+export let name = 'oAuth'
 
-module.exports.config = {
+export let config = {
   timestamps: true
 }
 
-module.exports.table = {
+export let table = {
   id: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,

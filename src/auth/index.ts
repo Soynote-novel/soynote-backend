@@ -1,6 +1,6 @@
 // util
-import * as _strategy from './_strategy'
-import * as _generateToken from './_generateToken'
+import _strategy from './_strategy'
+import _generateToken from './_generateToken'
 
 // vendor
 import * as facebook from './facebook'

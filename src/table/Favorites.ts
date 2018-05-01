@@ -1,12 +1,12 @@
 import * as Sequelize from 'sequelize'
 
-module.exports.name = 'favorites'
+export let name = 'favorites'
 
-module.exports.config = {
+export let config = {
   timestamps: true
 }
 
-module.exports.table = {
+export let table = {
   userId: {
     type: Sequelize.UUID,
     allowNull: false

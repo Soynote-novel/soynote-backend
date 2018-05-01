@@ -2,7 +2,7 @@ const {
   clientID,
   clientSecret,
   callbackURL
-} = require('../auth.json').naver
+} = require('../../auth.json').naver
 
 export let vendor = 'naver'
 

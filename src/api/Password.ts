@@ -1,8 +1,8 @@
-const cryptos = require('crypto').createHash('sha256')
+const crypto = require('crypto').createHash('sha256')
 const bcrypt = require('bcrypt')
 
 // private method
-const createHash = (plain: string) => cryptos.update(plain).digest('hex')
+const createHash = (plain: string) => crypto.update(plain).digest('hex')
 
 class Password {
   static async signature (plain: string): Promise<string> {

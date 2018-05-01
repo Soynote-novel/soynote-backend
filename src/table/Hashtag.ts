@@ -1,12 +1,12 @@
 import * as Sequelize from 'sequelize'
 
-module.exports.name = 'hashtag'
+export let name = 'hashtag'
 
-module.exports.config = {
+export let config = {
   timestamps: false
 }
 
-module.exports.table = {
+export let table = {
   novel: {
     type: Sequelize.UUID,
     allowNull: false,

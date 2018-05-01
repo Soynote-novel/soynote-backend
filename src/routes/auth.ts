@@ -8,7 +8,7 @@ import { Password, JWT, LoginCheck, isNotLogin } from '../api'
 router.post('/login', isNotLogin, async (req, res) => {
   const user = await model.User.findByEmail(req.body.email)
 
-  if (user === false) {
+  if (!user) {
     const payload = {
       error: 'user not found'
     }
@@ -58,7 +58,8 @@ router.post('/login', isNotLogin, async (req, res) => {
   const isValidPassword = await Password.isValid(originPassword, targetPassword)
   if (isValidPassword) {
     const payload = {
-      success: true
+      success: true,
+      JWT_Token: ""
     }
     const jwtPayload = {
       id, email, nickname, isAdmin
@@ -79,7 +80,7 @@ router.post('/login', isNotLogin, async (req, res) => {
   }
 })
 
-router.get('/check', LoginCheck, async (req, res) => {
+router.get('/check', LoginCheck, async (req: any, res) => {
   const { id, email, nickname, isAdmin } = req.token
 
   const payload = { id, email, nickname, isAdmin }

@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken')
-const fs = require('fs')
-const configs = require('../config.json')
+import * as jwt from 'jsonwebtoken'
+import * as fs from 'fs'
+const config = require('../../config.json')
 
 class JWTBuilder {
   private readonly issuer: string
@@ -11,12 +11,12 @@ class JWTBuilder {
   private readonly maxAge: number|string
 
   constructor () {
-    this.issuer = configs.jwt.issuer
-    this.privkey = fs.readFileSync(configs.jwt.private)
+    this.issuer = config.jwt.issuer
+    this.privkey = fs.readFileSync(config.jwt.private)
     this.publkey = fs.readFileSync(config.jwt.public)
-    this.subject = configs.jwt.subject
+    this.subject = config.jwt.subject
     this.algorithm = 'RS256'
-    this.maxAge = configs.jwt.maxAge
+    this.maxAge = config.jwt.maxAge
   }
 
   async createToken (payload: object): Promise<string> {

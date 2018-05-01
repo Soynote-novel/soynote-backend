@@ -5,10 +5,8 @@ const {
   username,
   password,
   config
-} = require('../config').db
+} = require('../../config').db
 
 const Table = new Sequelize(database, username, password, config)
 
-Table.sync()
-
-module.exports = Table
+export default Table

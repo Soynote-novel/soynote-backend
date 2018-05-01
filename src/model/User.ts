@@ -1,14 +1,10 @@
-const { Password } = require('../api')
-const table = require('../table')
+import { Password } from '../api'
+import table from '../table'
 
 const SUCCESS = true
 
 class User {
-  /**
-   * ID로 유저정보를 찾습니다.
-   * @param {string} id UUID형식의 찾을 유저의 ID
-   */
-  static async findById (id) {
+  static async findById (id: string): Promise<any> {
     const payload = {
       where: { id }
     }
@@ -17,11 +13,7 @@ class User {
     return (!!user) && user.dataValues
   }
 
-  /**
-   * E-Mail로 유저정보를 찾습니다.
-   * @param {string} email 찾을 유저의 E-Mail
-   */
-  static async findByEmail (email) {
+  static async findByEmail (email: string): Promise<any> {
     const payload = {
       where: { email }
     }
@@ -30,11 +22,7 @@ class User {
     return (!!user) && user.dataValues
   }
 
-  /**
-   * 닉네임으로 유저정보를 찾습니다.
-   * @param {string} nickname 찾을 유저의 닉네임
-   */
-  static async findByNick (nickname) {
+  static async findByNick (nickname: string): Promise<any> {
     const payload = {
       where: { nickname }
     }
@@ -43,14 +31,7 @@ class User {
     return (!!user) && user.dataValues
   }
 
-  /**
-   * 회원가입용 메소드입니다.
-   * @param {Object} user 회원가입을 할 유저의 상세정보입니다.
-   * @param {string} user.email 유저의 이메일입니다.
-   * @param {string} user.password 유저의 평문 패스워드입니다.
-   * @param {string} user.nickname 유저의 닉네임입니다.
-   */
-  static async register (user) {
+  static async register (user: { email: string, password: string, nickname: string }): Promise<boolean> {
     const { email, password, nickname } = user
 
     const payload = {
@@ -64,11 +45,7 @@ class User {
     return SUCCESS
   }
 
-  /**
-   * 회원탈퇴를 하는 메소드입니다.
-   * @param {string} id 회원탈퇴를 진행할 유저의 ID
-   */
-  static async unregister (id) {
+  static async unregister (id: string): Promise<boolean> {
     const payload = {
       where: { id }
     }
@@ -79,4 +56,4 @@ class User {
   }
 }
 
-module.exports = User
+export default User

@@ -1,15 +1,9 @@
 import table from '../table'
 
-const getUnique = (str: string): string => {
-  return str.filter((value: any, index: any, self: any) => {
-    return self.indexOf(value) === index
-  })
-}
-
-// const SUCCESS = true
+const SUCCESS = true
 
 class Hashtag {
-  static async findByNovel (novel: string) {
+  static async findByNovel (novel: string): Promise<object|null> {
     const payload = {
       where: { novel }
     }
@@ -18,7 +12,7 @@ class Hashtag {
     return (!!hashtag) && hashtag.dataValues
   }
 
-  static async findByTag (tag: string) {
+  static async findByTag (tag: string): Promise<object|null> {
     const payload = {
       where: { tag }
     }
@@ -27,11 +21,13 @@ class Hashtag {
     return (!!hashtag) && hashtag.dataValues
   }
 
-  static async createTags (tags: string) {
+  static async createTags (tags: string):Promise<boolean> {
     const payload = {
       
     }
+
+    return SUCCESS
   }
 }
 
-module.exports = Hashtag
+export default Hashtag

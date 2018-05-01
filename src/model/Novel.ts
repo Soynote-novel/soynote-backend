@@ -1,9 +1,9 @@
-const table = require('../table')
+import table from '../table'
 
 const SUCCESS = true
 
 class Novel {
-  static async findById (id) {
+  static async findById (id: string): Promise<object|null> {
     const payload = {
       where: { id }
     }
@@ -12,7 +12,7 @@ class Novel {
     return (!!novel) && novel.dataValues
   }
 
-  static async findByName (name) {
+  static async findByName (name: string): Promise<object|null> {
     const payload = {
       wehre: { name }
     }
@@ -21,7 +21,7 @@ class Novel {
     return (!!novel) && novel.dataValues
   }
 
-  static async findByWriter (writer) {
+  static async findByWriter (writer:string): Promise<object|null> {
     const payload = {
       where: { writer }
     }
@@ -30,15 +30,15 @@ class Novel {
     return (!!novel) && novel.dataValues
   }
 
-  static async createNovel ({ writer, name, bio }) {
-    const payload = { writer, name, bio }
+  static async createNovel (Novel: { writer: string, name: string, bio: string }): Promise<boolean> {
+    const payload = Novel
 
     await table.Novel.create(payload)
 
     return SUCCESS
   }
 
-  static async deleteNovel ({ id }) {
+  static async deleteNovel (id: string): Promise<boolean> {
     const payload = {
       where: {
         id
@@ -50,7 +50,8 @@ class Novel {
     return SUCCESS
   }
 
-  static async editNovel ({id, bio}) {
+  static async editNovel (Novel: { id: string, bio: string }): Promise<boolean> {
+    const { id, bio } = Novel
     const payload = {
       where: { id }
     }
@@ -62,4 +63,4 @@ class Novel {
   }
 }
 
-module.exports = Novel
+export default Novel
