@@ -4,3 +4,4 @@ config.json
 auth.json
 private.pem
 public.pem
+dist/*
