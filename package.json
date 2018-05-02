@@ -27,8 +27,6 @@
     "express": "^4.16.2",
     "express-async-errors": "^2.1.2",
     "express-session": "^1.15.6",
-    "glob": "^7.1.2",
-    "glob-promise": "^3.4.0",
     "jsonwebtoken": "^8.2.1",
     "log4js": "^2.5.3",
     "mysql2": "^1.5.2",
@@ -43,11 +41,6 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^6.0.0",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
     "typescript": "^2.8.3"
   }
 }
