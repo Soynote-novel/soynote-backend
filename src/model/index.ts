@@ -6,6 +6,7 @@ import Episode from './Episode'
 import Comment from './Comment'
 import Favorites from './Favorites'
 import RecentIP from './RecentIP'
+import Report from './Report'
 
 export {
     User,
@@ -15,5 +16,6 @@ export {
     Episode,
     Comment,
     Favorites,
-    RecentIP
+    RecentIP,
+    Report
 }
