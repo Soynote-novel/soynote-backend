@@ -33,19 +33,24 @@ configurePassport(auth.twitter)
 
 // oauth success
 router.get('/loginsuccess', (req, res) => {
-  /* const message = (req.)
-    ? 'oauth success, require register'
-    : 'oauth success, user is valid' */
-  const message = 'oauth success'
+  const payload = {
+    success: true,
+    message: 'oauth success'
+  }
 
   res.status(200)
-  res.send(message)
+  res.jsonp(payload)
   res.end()
 })
 
 router.get('/loginfail', (req, res) => {
+  const payload = {
+    error: true,
+    message: 'oauth error'
+  }
+
   res.status(400)
-  res.send('oauth failure')
+  res.jsonp(payload)
   res.end()
 })
 

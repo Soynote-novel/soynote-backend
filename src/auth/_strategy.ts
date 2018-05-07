@@ -13,11 +13,13 @@ export default (vendor: string) => {
     if (result.user && result.user.id) {
       const { id, email, nickname, isAdmin } = result.user
       payload = { id, email, nickname, isAdmin, vendor, oAuthId: profile.id, requireRegister: false }
-    } else if (result.user && !result.user.id) {
-      payload = { vendor, oAuthId: profile.id, requireRegister: true }
     } else {
-      await model.OAuth.createDummyUser({oAuthId: profile.id, vendor})
-      payload = { vendor, oAuthId: profile.id, requireRegister: true }
+      if (result.oauth) {
+        payload = { vendor, oAuthId: profile.id, requireRegister: true }
+      } else {
+        await model.OAuth.createDummyUser({oAuthId: profile.id, vendor})
+        payload = { vendor, oAuthId: profile.id, requireRegister: true }
+      }
     }
 
     done(null, payload)

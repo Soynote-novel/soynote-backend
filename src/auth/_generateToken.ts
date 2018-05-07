@@ -8,9 +8,7 @@ export default async (req: any, res: any) => {
     httpOnly: true
   })
 
-  res.status(200)
-  res.jsonp(req.user)
-  res.end()
+  res.redirect('/oauth/loginsuccess')
 
   await model.RecentIP.log({ user: req.user.id, ip: req.ip.replace('::ffff:', '') })
 }
