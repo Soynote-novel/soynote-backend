@@ -31,10 +31,6 @@ export let table = {
     type: Sequelize.TEXT,
     allowNull: false
   },
-  poster: {
-    type: Sequelize.UUID,
-    allowNull: true
-  },
   hit: {
     type: Sequelize.INTEGER(10),
     allowNull: false,

@@ -21,20 +21,20 @@ class Episode {
     return (!!episode) && episode.dataValues
   }
 
-  static async newNovel (novelInfo: { name: string, novel: string, isAdult: boolean, content: string, poster: string }): Promise<boolean> {
-    const payload = novelInfo
+  static async newEpisode (episode: { name: string, novel: string, isAdult: boolean, content: string }): Promise<boolean> {
+    const payload = episode
     await table.Episode.create(payload)
 
     return SUCCESS
   }
 
-  static async editNovel (novelInfo: { id: string, name: string, isAdult: boolean, content: string, poster: string }): Promise<boolean> {
-    const { id, name, isAdult, content, poster } = novelInfo
+  static async editNovel (episode: { id: string, name: string, isAdult: boolean, content: string }): Promise<boolean> {
+    const { id, name, isAdult, content } = episode
     const payload = {
       where: { id }
     }
     const editInformation = {
-      name, isAdult, content, poster
+      name, isAdult, content
     }
     await table.Episode.update(payload, editInformation)
 
