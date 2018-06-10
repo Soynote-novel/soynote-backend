@@ -2,7 +2,7 @@ import { Password } from '../api'
 import * as model from '../model'
 
 class Test {
-  static async findByUserId () {
+  static async isValid () {
     const id = 'input uuid'
 
     const result = await model.OAuth.findByUserId(id)
@@ -11,4 +11,4 @@ class Test {
   }
 }
 
-Test.findByUserId()
+Test.isValid().catch((error) => { console.error(error)})

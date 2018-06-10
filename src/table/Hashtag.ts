@@ -10,7 +10,7 @@ export let table = {
   novel: {
     type: Sequelize.UUID,
     allowNull: false,
-    primaryKey: true
+    unique: false
   },
   tag: {
     type: Sequelize.CHAR(20),

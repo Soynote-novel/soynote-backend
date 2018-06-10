@@ -19,4 +19,4 @@ class Test {
   }
 }
 
-Test.isValid()
+Test.isValid().catch((error) => { console.error(error)})

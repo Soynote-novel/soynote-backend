@@ -2,7 +2,7 @@ import { Password } from '../api'
 import * as model from '../model'
 
 class Test {
-  static async findById () {
+  static async isValid () {
     const id = 'input uuid'
 
     const result = model.User.findById(id)
@@ -11,4 +11,4 @@ class Test {
   }
 }
 
-Test.findById()
+Test.isValid().catch((error) => { console.error(error)})

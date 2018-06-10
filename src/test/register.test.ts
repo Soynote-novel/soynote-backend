@@ -2,7 +2,7 @@ import { Password } from '../api'
 import * as model from '../model'
 
 class Test {
-  static async register () {
+  static async isValid () {
     try {
       const email = 'jioo0224@naver.com'
       const password = 'registertest'
@@ -18,4 +18,4 @@ class Test {
   }
 }
 
-Test.register()
+Test.isValid().catch((error) => { console.error(error)})

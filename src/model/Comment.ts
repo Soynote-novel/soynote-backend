@@ -14,7 +14,7 @@ class Comment {
     return (!!comment) && comment.dataValues
   }
 
-  static async averageByEpisode (episode: string): Promise<object|null> {
+  static async averageAtEpisode (episode: string): Promise<object|null> {
     const payload = {
       attributes: [[sequelize.fn('AVG', sequelize.col('score'))]],
       where: { episode }
@@ -24,7 +24,7 @@ class Comment {
     return (!!comment) && comment.dataValues
   }
 
-  static async averageByNovel (novel:string): Promise<number|null> {
+  static async averageAtNovel (novel:string): Promise<number|null> {
     const payload = {
       attributes: [[sequelize.fn('AVG', sequelize.col('score'))]],
       where: { novel }

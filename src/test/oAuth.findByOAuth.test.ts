@@ -2,7 +2,7 @@ import { Password } from '../api'
 import * as model from '../model'
 
 class Test {
-  static async findByOAuth () {
+  static async isValid () {
     const oAuthId = 0
     const vendor = 'vendor'
 
@@ -12,4 +12,4 @@ class Test {
   }
 }
 
-Test.findByOAuth()
+Test.isValid().catch((error) => { console.error(error)})
