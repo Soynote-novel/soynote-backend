@@ -17,7 +17,7 @@ const tables = {
   Hashtag: defineTable(tableList.Hashtag),
   SubscribedAuthors: defineTable(tableList.SubscribedAuthors),
   Favorites: defineTable(tableList.Favorites),
-  RecentIP: defineTable(tableList.RecentIP)
+  Logs: defineTable(tableList.Logs)
 }
 
 setForeignKeys(tables)

@@ -5,7 +5,7 @@ import Hashtag from './Hashtag'
 import Episode from './Episode'
 import Comment from './Comment'
 import Favorites from './Favorites'
-import RecentIP from './RecentIP'
+import Logs from './Logs'
 import Report from './Report'
 
 export {
@@ -16,6 +16,6 @@ export {
     Episode,
     Comment,
     Favorites,
-    RecentIP,
+    Logs,
     Report
 }

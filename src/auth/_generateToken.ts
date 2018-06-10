@@ -9,6 +9,10 @@ export default async (req: any, res: any) => {
   res.redirect('/oauth/loginsuccess')
 
   if(req.user.id) {
-    await model.RecentIP.log({ user: req.user.id, ip: req.ip.replace('::ffff:', '') })
+    await model.Logs.log({
+      user: req.user.id,
+      ip: req.ip.replace('::ffff:', ''),
+      type: 'auth.oauth'
+    })
   }
 }
