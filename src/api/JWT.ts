@@ -2,6 +2,20 @@ import * as jwt from 'jsonwebtoken'
 import * as fs from 'fs'
 const config = require('../../config.json')
 
+interface JWTToken {
+  id: string,
+  email: string,
+  nickname: string,
+  isAdmin: boolean,
+  vendor: string,
+  oAuthId: number,
+  requireRegister: string,
+  iat: number,
+  exp: number,
+  iss: string,
+  sub: string
+}
+
 class JWTBuilder {
   private readonly issuer: string
   private readonly privkey: any
@@ -30,7 +44,7 @@ class JWTBuilder {
     return result
   }
 
-  async verifyToken (token: string): Promise<object> {
+  async verifyToken (token: string): Promise<JWTToken> {
     const options = {
       algorithm: this.algorithm,
       issuer: this.issuer,
@@ -50,7 +64,7 @@ class JWTBuilder {
     })
   }
 
-  private _verifyJWT (token: string, secret: any, options: object): Promise<object> {
+  private _verifyJWT (token: string, secret: any, options: object): Promise<JWTToken> {
     return new Promise((resolve, reject) => {
       jwt.verify(token, secret, options, (error: Error, decoded: any) => {
         if (error) reject(error)

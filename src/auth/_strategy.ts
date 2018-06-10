@@ -1,4 +1,5 @@
 import * as model from '../model'
+import { sessToken, JWT } from '../api'
 
 interface Profile {
   id: number
@@ -10,15 +11,35 @@ export default (vendor: string) => {
 
     let payload
 
-    if (result.user && result.user.id) {
-      const { id, email, nickname, isAdmin } = result.user
-      payload = { id, email, nickname, isAdmin, vendor, oAuthId: profile.id, requireRegister: false }
+    const token = sessToken.getToken(req)
+
+    if (result && result.user && result.user.id) {
+      if (token) {
+        done(true, 'already registered')
+      } else {
+        const { id, email, nickname, isAdmin } = result.user
+        payload = { id, email, nickname, isAdmin, vendor, oAuthId: profile.id, requireRegister: false }
+      }
     } else {
-      if (result.oauth) {
+      if (result && result.oauth) {
         payload = { vendor, oAuthId: profile.id, requireRegister: true }
       } else {
-        await model.OAuth.createDummyUser({oAuthId: profile.id, vendor})
-        payload = { vendor, oAuthId: profile.id, requireRegister: true }
+        if (token) {
+          console.log(token)
+          let tokenUser = await JWT.verifyToken(token)
+          let userInfo = { userId: tokenUser.id, oAuthId: profile.id, vendor}
+          
+           let [dummy, user] = await Promise.all([
+            model.OAuth.createUser(userInfo),
+            model.User.findById(tokenUser.id)
+          ])
+
+          const { id, email, nickname, isAdmin } = user
+          payload = { id, email, nickname, isAdmin, vendor, oAuthId: profile.id, requireRegister: false }
+        } else {
+          await model.OAuth.createDummyUser({oAuthId: profile.id, vendor})
+          payload = { vendor, oAuthId: profile.id, requireRegister: true }
+        }
       }
     }
 
