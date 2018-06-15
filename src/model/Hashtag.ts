@@ -34,8 +34,19 @@ class Hashtag {
       where: { novel }
     }
 
+    let bulkTags = this.getTags(novel, tags)
+
+    await table.Hashtag.destroy(payload)
+
+    await table.Hashtag.bulkCreate(bulkTags)
+
+    return SUCCESS
+  }
+
+  private static getTags (novel: string, tags: string[]) {
     let newTags = Array.from(new Set(tags))
     let bulkTags: BulkTags = []
+
     newTags.forEach((current) => {
       bulkTags.push({
         novel, tag: current
@@ -46,11 +57,7 @@ class Hashtag {
       bulkTags.length = 9
     }
 
-    await table.Hashtag.destroy(payload)
-
-    await table.Hashtag.bulkCreate(bulkTags)
-
-    return SUCCESS
+    return bulkTags
   }
 }
 
