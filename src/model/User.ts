@@ -54,6 +54,66 @@ class User {
 
     return SUCCESS
   }
+
+  static async verifyUser (id: string): Promise<boolean> {
+    const payload = {
+      where: { id }
+    }
+    const updateData = {
+      verified: true
+    }
+
+    await table.User.update(updateData, payload)
+    return SUCCESS
+  }
+
+  static async blockUser (id: string): Promise<boolean> {
+    const payload = {
+      where: { id }
+    }
+    const updateData = {
+      isBlocked: true
+    }
+
+    await table.User.update(updateData, payload)
+    return SUCCESS
+  }
+
+  static async unBlockUser (id: string): Promise<boolean> {
+    const payload = {
+      where: { id }
+    }
+    const updateData = {
+      isBlocked: false
+    }
+
+    await table.User.update(updateData, payload)
+    return SUCCESS
+  }
+
+  static async setAdmin (id: string): Promise<boolean> {
+    const payload = {
+      where: { id }
+    }
+    const updateData = {
+      isAdmin: true
+    }
+
+    await table.User.update(updateData, payload)
+    return SUCCESS
+  }
+
+  static async unSetAdmin (id: string): Promise<boolean> {
+    const payload = {
+      where: { id }
+    }
+    const updateData = {
+      isAdmin: false
+    }
+
+    await table.User.update(updateData, payload)
+    return SUCCESS
+  }
 }
 
 export default User
