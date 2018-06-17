@@ -8,11 +8,11 @@ export let config = {
 
 export let table = {
   id: {
-    type: Sequelize.UUID,
+    type: Sequelize.INTEGER(11),
     allowNull: false,
     primaryKey: true,
     unique: true,
-    defaultValue: Sequelize.UUIDV4
+    autoIncrement: true
   },
   user: {
     type: Sequelize.UUID,

@@ -7,6 +7,13 @@ export let config = {
 }
 
 export let table = {
+  id: {
+    type: Sequelize.INTEGER(11),
+    allowNull: false,
+    primaryKey: true,
+    unique: true,
+    autoIncrement: true
+  },
   novel: {
     type: Sequelize.UUID,
     allowNull: false,
