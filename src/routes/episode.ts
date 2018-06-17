@@ -6,7 +6,7 @@ import * as model from '../model'
 import { JWT, LoginCheck, isNotLogin, returnForm } from '../api'
 
 router.get('/view/:id', async (req, res) => {
-  const novel = await model.Novel.findById(req.params.id)
+  const novel = await model.Episode.findById(req.params.id)
 
   if (novel) {
     const payload = returnForm.isSuccess(novel)
@@ -17,7 +17,7 @@ router.get('/view/:id', async (req, res) => {
 
     return
   } else {
-    const payload = returnForm.isError('novel not found')
+    const payload = returnForm.isError('episode not found')
   
     res.status(404)
     res.jsonp(payload)
@@ -27,10 +27,11 @@ router.get('/view/:id', async (req, res) => {
   }
 })
 
-router.get('/list', async (req, res) => {
-  const novels = await model.Novel.getNovels(1)
-
-  const payload = returnForm.isSuccess(novels)
+router.get('/list/:id', async (req, res) => {
+  const payload = returnForm.isSuccess({
+    novel: await model.Novel.findById(req.params.id),
+    episodes: await model.Episode.getEpisodes(req.params.id, 1)
+  })
 
   res.status(200)
   res.jsonp(payload)
@@ -39,10 +40,11 @@ router.get('/list', async (req, res) => {
   return
 })
 
-router.get('/list/:page', async (req, res) => {
-  const novels = await model.Novel.getNovels(req.params.page)
-
-  const payload = returnForm.isSuccess(novels)
+router.get('/list/:id/:page', async (req, res) => {
+  const payload = returnForm.isSuccess({
+    novel: await model.Novel.findById(req.params.id),
+    episodes: await model.Episode.getEpisodes(req.params.id, req.params.page)
+  })
 
   res.status(200)
   res.jsonp(payload)

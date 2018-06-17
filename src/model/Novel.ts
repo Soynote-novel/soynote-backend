@@ -3,6 +3,19 @@ import table from '../table'
 const SUCCESS = true
 
 class Novel {
+  static async getNovels (page: number): Promise<object> {
+    const payload = {
+      include: [{model: table.User, attributes: ['id', 'nickname', 'bio'], as: 'Writer' }],
+      attributes: ['id', 'name', 'bio', 'createdAt', 'updatedAt'],
+      order: [['createdAt', 'DESC']],
+      limit: 20,
+      offset: (page - 1) * 20
+    }
+    const novel = await table.Novel.findAll(payload)
+
+    return (!!novel) && novel
+  }
+
   static async findById (id: string): Promise<object|null> {
     const payload = {
       where: { id },

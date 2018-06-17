@@ -3,20 +3,25 @@ import table from '../table'
 const SUCCESS = true
 
 class Episode {
-  static async findById (id: string): Promise<boolean|object> {
+  static async getEpisodes (novel: string, page: number): Promise<object> {
     const payload = {
-      where: { id }
-    }
-    const episode = await table.Episode.findOne(payload)
-
-    return (!!episode) && episode.dataValues
-  }
-
-  static async findByNovel (novel: string): Promise<boolean|object> {
-    const payload = {
-      where: { novel }
+      where: { novel },
+      attributes: ['id', 'name', 'isAdult', 'hit', 'createdAt', 'updatedAt'],
+      order: [['createdAt', 'DESC']],
+      limit: 20,
+      offset: (page - 1) * 20
     }
     const episode = await table.Episode.findAll(payload)
+
+    return (!!episode) && episode
+  }
+
+  static async findById (id: string): Promise<boolean|object> {
+    const payload = {
+      where: { id },
+      include: [{ model: table.Novel, attributes: ['id', 'name', 'bio'], as: 'Novel' }]
+    }
+    const episode = await table.Episode.findOne(payload)
 
     return (!!episode) && episode.dataValues
   }

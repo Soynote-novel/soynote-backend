@@ -100,6 +100,7 @@ try {
   app.use('/auth', routes.auth)
   app.use('/oauth', routes.oauth)
   app.use('/novel', routes.novel)
+  app.use('/episode', routes.episode)
 
   app.use((req: any, res: any) => {
     const payload = returnForm.isError('invalid uri')
