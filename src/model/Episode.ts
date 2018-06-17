@@ -6,9 +6,10 @@ class Episode {
   static async getEpisodes (novel: string, page: number): Promise<object> {
     const payload = {
       where: { id: novel },
-      include: [{ model: table.Episode,
-        attributes: ['id', 'name', 'isAdult', 'hit', 'createdAt', 'updatedAt'],
-      }],
+      include: [{ model: table.User, attributes: ['id', 'nickname', 'bio'], as: 'Writer' },
+        { model: table.Episode,
+          attributes: ['id', 'name', 'isAdult', 'hit', 'createdAt', 'updatedAt'],
+        }],
       order: [[{ model: table.Episode}, 'createdAt',  'desc']],
       limit: 20,
       offset: (page - 1) * 20

@@ -5,7 +5,7 @@ const SUCCESS = true
 class Novel {
   static async getNovels (page: number): Promise<object> {
     const payload = {
-      include: [{model: table.User, attributes: ['id', 'nickname', 'bio'], as: 'Writer' }],
+      include: [{ model: table.User, attributes: ['id', 'nickname', 'bio'], as: 'Writer' }],
       attributes: ['id', 'name', 'bio', 'createdAt', 'updatedAt'],
       order: [['createdAt', 'DESC']],
       limit: 20,
@@ -19,7 +19,7 @@ class Novel {
   static async findById (id: string): Promise<object|null> {
     const payload = {
       where: { id },
-      include: [{model: table.User, attributes: ['id', 'nickname', 'bio'], as: 'Writer' }],
+      include: [{ model: table.User, attributes: ['id', 'nickname', 'bio'], as: 'Writer' }],
       attributes: ['id', 'name', 'bio', 'createdAt', 'updatedAt']
     }
     const novel = await table.Novel.findOne(payload)
