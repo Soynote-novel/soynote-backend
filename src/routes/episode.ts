@@ -28,10 +28,8 @@ router.get('/view/:id', async (req, res) => {
 })
 
 router.get('/list/:id', async (req, res) => {
-  const payload = returnForm.isSuccess({
-    novel: await model.Novel.findById(req.params.id),
-    episodes: await model.Episode.getEpisodes(req.params.id, 1)
-  })
+  const episodes = await model.Episode.getEpisodes(req.params.id, 1)
+  const payload = returnForm.isSuccess(episodes)
 
   res.status(200)
   res.jsonp(payload)
@@ -41,10 +39,8 @@ router.get('/list/:id', async (req, res) => {
 })
 
 router.get('/list/:id/:page', async (req, res) => {
-  const payload = returnForm.isSuccess({
-    novel: await model.Novel.findById(req.params.id),
-    episodes: await model.Episode.getEpisodes(req.params.id, req.params.page)
-  })
+  const episodes = await model.Episode.getEpisodes(req.params.id, req.params.page)
+  const payload = returnForm.isSuccess(episodes)
 
   res.status(200)
   res.jsonp(payload)
