@@ -28,7 +28,7 @@ router.get('/view/:id', async (req, res) => {
 })
 
 router.get('/list/:id', async (req, res) => {
-  const episodes = await model.Episode.getEpisodes(req.params.id, 1)
+  const episodes = await model.Novel.getEpisodes(req.params.id, 1)
   const payload = returnForm.isSuccess(episodes)
 
   res.status(200)
@@ -39,7 +39,7 @@ router.get('/list/:id', async (req, res) => {
 })
 
 router.get('/list/:id/:page', async (req, res) => {
-  const episodes = await model.Episode.getEpisodes(req.params.id, req.params.page)
+  const episodes = await model.Novel.getEpisodes(req.params.id, req.params.page)
   const payload = returnForm.isSuccess(episodes)
 
   res.status(200)

@@ -3,6 +3,22 @@ import table from '../table'
 const SUCCESS = true
 
 class Novel {
+  static async getEpisodes (novel: string, page: number): Promise<object> {
+    const payload = {
+      where: { id: novel },
+      include: [{ model: table.User, attributes: ['id', 'nickname', 'bio'], as: 'Writer' },
+        { model: table.Episode,
+          attributes: ['id', 'name', 'isAdult', 'hit', 'createdAt', 'updatedAt'],
+        }],
+      order: [[{ model: table.Episode}, 'createdAt',  'desc']],
+      limit: 20,
+      offset: (page - 1) * 20
+    }
+    const episode = await table.Novel.findOne(payload)
+
+    return (!!episode) && episode
+  }
+
   static async getNovels (page: number): Promise<object> {
     const payload = {
       include: [{ model: table.User, attributes: ['id', 'nickname', 'bio'], as: 'Writer' }],
