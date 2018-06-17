@@ -25,7 +25,6 @@ export default (vendor: string) => {
         payload = { vendor, oAuthId: profile.id, requireRegister: true }
       } else {
         if (token) {
-          console.log(token)
           let tokenUser = await JWT.verifyToken(token)
           let userInfo = { userId: tokenUser.id, oAuthId: profile.id, vendor}
           

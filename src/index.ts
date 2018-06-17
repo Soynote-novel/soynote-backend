@@ -99,6 +99,7 @@ try {
 
   app.use('/auth', routes.auth)
   app.use('/oauth', routes.oauth)
+  app.use('/novel', routes.novel)
 
   app.use((req: any, res: any) => {
     const payload = {

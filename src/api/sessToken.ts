@@ -1,9 +1,13 @@
-export let getToken = (req: any) => {
-  return req.cookies.sessToken
+class sessToken {
+  static getToken (req: any): string {
+    return req.cookies.sessToken
+  }
+
+  static setToken (res: any, token: string): void {
+    res.cookie('sessToken', token, {
+      httpOnly: true
+    })
+  }
 }
 
-export let setToken = (res: any, token: string) => {
-  res.cookie('sessToken', token, {
-    httpOnly: true
-  })
-}
+export default sessToken

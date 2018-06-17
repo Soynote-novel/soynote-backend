@@ -1,5 +1,5 @@
 const crypto = require('crypto').createHash('sha256')
-const bcrypt = require('bcrypt')
+import * as bcrypt from 'bcrypt'
 
 // private method
 const createHash = (plain: string) => crypto.update(plain).digest('hex')

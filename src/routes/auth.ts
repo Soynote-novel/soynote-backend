@@ -3,15 +3,13 @@ import { Router } from 'express'
 const router = Router()
 
 import * as model from '../model'
-import { Password, JWT, LoginCheck, isNotLogin, sessToken } from '../api'
+import { Password, JWT, LoginCheck, isNotLogin, sessToken, returnForm } from '../api'
 
 router.post('/login', isNotLogin, async (req, res) => {
   const user = await model.User.findByEmail(req.body.email)
 
   if (!user) {
-    const payload = {
-      error: 'user not found'
-    }
+    const payload = returnForm.isError('user not found')
 
     res.status(404)
     res.jsonp(payload)
@@ -21,10 +19,7 @@ router.post('/login', isNotLogin, async (req, res) => {
   }
 
   if (user.isBlocked) {
-    const payload = {
-      error: 'this is blocked account',
-      isBlocked: true
-    }
+    const payload = returnForm.isError('this is blocked account')
 
     res.status(403)
     res.jsonp(payload)
@@ -34,10 +29,7 @@ router.post('/login', isNotLogin, async (req, res) => {
   }
 
   if (!user.verified) {
-    const payload = {
-      error: 'this is not verified account',
-      notVerified: true
-    }
+    const payload = returnForm.isError('this is not verified account')
 
     res.status(403)
     res.jsonp(payload)
@@ -57,10 +49,6 @@ router.post('/login', isNotLogin, async (req, res) => {
   const originPassword = req.body.password
   const isValidPassword = await Password.isValid(originPassword, targetPassword)
   if (isValidPassword) {
-    const payload = {
-      success: true,
-      JWT_Token: ""
-    }
     const jwtPayload = {
       id, email, nickname, isAdmin
     }
@@ -68,7 +56,10 @@ router.post('/login', isNotLogin, async (req, res) => {
     const token = await JWT.createToken(jwtPayload) // create jwt token
 
     sessToken.setToken(res, token)
-    payload.JWT_Token = token
+    const payload = returnForm.isSuccess({
+      success: true,
+      JWT_Token: token
+    })
 
     res.status(200)
     res.jsonp(payload)
@@ -85,7 +76,7 @@ router.post('/login', isNotLogin, async (req, res) => {
 router.get('/check', LoginCheck, async (req: any, res) => {
   const { id, email, nickname, isAdmin } = req.token
 
-  const payload = { id, email, nickname, isAdmin }
+  const payload = returnForm.isSuccess({ id, email, nickname, isAdmin })
 
   res.status(200)
   res.send(payload)
@@ -105,11 +96,6 @@ router.get('/renew', LoginCheck, async (req: any, res) => {
   let userInfo = await model.User.findById(id)
 
   if (userInfo) {
-    payload = {
-      success: true,
-      JWT_Token: ""
-    }
-
     let { id, email, nickname, isAdmin } = userInfo
     const jwtPayload = {
       id, email, nickname, isAdmin
@@ -118,7 +104,10 @@ router.get('/renew', LoginCheck, async (req: any, res) => {
     const token = await JWT.createToken(jwtPayload) // create jwt token
 
     sessToken.setToken(res, token)
-    payload.JWT_Token = token
+    payload = returnForm.isSuccess({
+      success: true,
+      JWT_Token: token
+    })
 
     res.status(200)
 
@@ -128,10 +117,7 @@ router.get('/renew', LoginCheck, async (req: any, res) => {
       type: 'auth.renew'
     })
   } else {
-    payload = {
-      error: true,
-      reason: 'user not found'
-    }
+    payload = returnForm.isError('user not found')
 
     res.status(404)
   }

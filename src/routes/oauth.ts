@@ -1,15 +1,10 @@
 import { Router } from 'express'
 import * as passport from 'passport'
+import { returnForm } from '../api'
 
 const router = Router()
 
 import * as auth from '../auth'
-
-router.all('/', (req, res) => {
-  res.status(404)
-  res.send()
-  res.end()
-})
 
 // passport auth configure
 const configurePassport = (configure: { vendor: string, Strategy: any, strategyConfig: any }) => {
@@ -33,10 +28,7 @@ configurePassport(auth.twitter)
 
 // oauth success
 router.get('/loginsuccess', (req, res) => {
-  const payload = {
-    success: true,
-    message: 'oauth success'
-  }
+  const payload = returnForm.isSuccess('oauth success')
 
   res.status(200)
   res.jsonp(payload)
@@ -44,10 +36,7 @@ router.get('/loginsuccess', (req, res) => {
 })
 
 router.get('/loginfail', (req, res) => {
-  const payload = {
-    error: true,
-    message: 'oauth error'
-  }
+  const payload = returnForm.isError('oauth error')
 
   res.status(400)
   res.jsonp(payload)
