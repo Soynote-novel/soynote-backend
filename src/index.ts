@@ -7,6 +7,7 @@ import * as bodyParser from 'body-parser'
 import * as cors from 'cors'
 import * as cookieParser from 'cookie-parser'
 import * as passport from 'passport'
+import { returnForm } from './api'
 
 // const bluebird = require('bluebird')
 // const redis = require('redis')
@@ -89,10 +90,9 @@ try {
 
   // main page
   app.all('/', (req: any, res: any) => {
-    const payload = {
-      response: 'Welcome to soynote backend'
-    }
+    const payload = returnForm.isSuccess('Welcome to soynote backend')
 
+    res.status(200)
     res.jsonp(payload)
     res.end()
   })
@@ -102,10 +102,7 @@ try {
   app.use('/novel', routes.novel)
 
   app.use((req: any, res: any) => {
-    const payload = {
-      error: true,
-      type: 'invalid uri'
-    }
+    const payload = returnForm.isError('invalid uri')
 
     res.status(400)
     res.jsonp(payload)

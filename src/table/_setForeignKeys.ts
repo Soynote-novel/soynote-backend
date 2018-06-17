@@ -15,6 +15,7 @@ export default (tables: any) => {
   setFK(tables.User, 'userId', tables.Favorites, 'cascade', 'cascade')
   setFK(tables.User, 'user', tables.Logs, 'cascade', 'cascade')
   tables.OAuth.belongsTo(tables.User, { foreignKey: 'userId' })
+  tables.Novel.belongsTo(tables.User, { foreignKey: 'writer', as: 'Writer' })
 
   setFK(tables.Novel, 'novel', tables.Episode, 'cascade', 'cascade')
   setFK(tables.Novel, 'novelId', tables.Favorites, 'cascade', 'cascade')

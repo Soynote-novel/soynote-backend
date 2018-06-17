@@ -2,7 +2,6 @@ class returnForm {
   static isSuccess (returnData: any): object {
     const result = {
       success: true,
-      error: false,
       data: returnData
     }
 
@@ -11,9 +10,8 @@ class returnForm {
   
   static isError (error: string): object {
     const result = {
-      error: true,
       success: false,
-      data: error
+      description: error
     }
 
     return result

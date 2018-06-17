@@ -6,52 +6,31 @@ class OAuth {
   static async findById (id: string): Promise<any> {
     const payload = {
       where: { id },
-      include: { model: table.User }
+      include: [{ model: table.User, attributes: ['id', 'nickname', 'email', 'isAdmin'] }]
     }
-    const user = await table.OAuth.findOne(payload)
+    const oauth = await table.OAuth.findOne(payload)
 
-    if (user) {
-      const result = {
-        oauth: user.dataValues,
-        user: user.dataValues.user ? user.dataValues.user.dataValues : ''
-      }
-      delete result.oauth.user
-      return result
-    } else return null
+    return (!!oauth) && oauth.dataValues
   }
 
   static async findByUserId (userId: string): Promise<any> {
     const payload = {
       where: { userId },
-      include: { model: table.User }
+      include: [{ model: table.User, attributes: ['id', 'nickname', 'email', 'isAdmin'] }]
     }
-    const user = await table.OAuth.findOne(payload)
+    const oauth = await table.OAuth.findOne(payload)
 
-    if (user) {
-      const result = {
-        oauth: user.dataValues,
-        user: user.dataValues.user ? user.dataValues.user.dataValues : ''
-      }
-      delete result.oauth.user
-      return result
-    } else return null
+    return (!!oauth) && oauth.dataValues
   }
 
   static async findByOAuth (oAuthId: number, vendor: string): Promise<any> {
     const payload = {
       where: { oAuthId, vendor },
-      include: { model: table.User }
+      include: [{ model: table.User, attributes: ['id', 'nickname', 'email', 'isAdmin'] }]
     }
-    const user = await table.OAuth.findOne(payload)
+    const oauth = await table.OAuth.findOne(payload)
 
-    if (user) {
-      const result = {
-        oauth: user.dataValues,
-        user: user.dataValues.user ? user.dataValues.user.dataValues : ''
-      }
-      delete result.oauth.user
-      return result
-    } else return null
+    return (!!oauth) && oauth.dataValues
   }
 
   static async createUser (user: { userId: string, oAuthId: number, vendor: string }): Promise<boolean> {
