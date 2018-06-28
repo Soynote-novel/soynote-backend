@@ -1,30 +1,57 @@
+import { Request, Response } from 'express'
 import { JWT } from '../api'
 
-export default async (req: any, res: any, next: any) => {
-  if (!req.headers && !req.headers.authorization) {
+interface Token {
+  id: string,
+  email: string,
+  nickname: string,
+  isAdmin: boolean,
+  vendor: string,
+  oAuthId: number,
+  requireRegister: string,
+  iat: number,
+  exp: number,
+  iss: string,
+  sub: string
+}
+
+declare global {
+  namespace Express {
+    interface Request {
+      token: Token
+    }
+  }
+}
+
+async function LoginCheck (req: Request, res: Response, next: Function): Promise<void> {
+  let header = req.get('authorization')
+  if (!header) {
     const payload = { valid: false, status: 'Please log in' }
     res.status(400)
     res.json(payload)
     res.end()
     return
-  }
-  // decode the token
-  let header = req.headers.authorization.split(' ')
-  let token = header[1]
+  } else {
+    // decode the token
+    let splitedHeader = header.split(' ')
+    let token = splitedHeader[1]
 
-  let result
+    let result
 
-  try {
-    result = await JWT.verifyToken(token)
+    try {
+      result = await JWT.verifyToken(token)
 
-    req.token = result
+      req.token = result
 
-    next()
-  } catch (error) {
-    const payload = { valid: false, status: 'Token has expired' }
+      next()
+    } catch (error) {
+      const payload = { valid: false, status: 'Token has expired' }
 
-    res.status(404)
-    res.json(payload)
-    res.end()
+      res.status(404)
+      res.json(payload)
+      res.end()
+    }
   }
 }
+
+export default LoginCheck

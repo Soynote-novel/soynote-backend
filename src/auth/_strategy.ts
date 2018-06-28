@@ -5,8 +5,8 @@ interface Profile {
   id: number
 }
 
-export default (vendor: string) => {
-  return async (req: any, accessToken: string, refreshToken: string, profile: Profile, done: any) => {
+export default (vendor: string) => { 
+  return async (req: any, accessToken: string, refreshToken: string, profile: Profile, done: Function) => {
     const result = await model.OAuth.findByOAuth(profile.id, vendor)
 
     let payload

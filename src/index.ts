@@ -57,15 +57,15 @@ try {
   app.use(cors({ origin: config.CORS }))
 
   // health moniter
-  app.all('/health', (req: any, res: any) => {
+  app.all('/health', (req, res) => {
     res.status(200)
     res.send()
     res.end()
   })
 
   // logger setup
-  app.use((req: any, res: any, next: any) => {
-    onFinished(res, (err: any, response: any) => {
+  app.use((req, res, next) => {
+    onFinished(res, (err, response) => {
       if (err) {
         logger.error(err)
 
@@ -89,7 +89,7 @@ try {
   })
 
   // main page
-  app.all('/', (req: any, res: any) => {
+  app.all('/', (req, res) => {
     const payload = returnForm.isSuccess('Welcome to soynote backend')
 
     res.status(200)
@@ -102,7 +102,7 @@ try {
   app.use('/novel', routes.novel)
   app.use('/episode', routes.episode)
 
-  app.use((req: any, res: any) => {
+  app.use((req, res) => {
     const payload = returnForm.isError('invalid uri')
 
     res.status(400)
@@ -111,7 +111,10 @@ try {
   })
 
   // error handler
-  app.use((err: any, req: any, res: any) => {
+  app.use((err: express.ErrorRequestHandler,
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction): void => {
     if (!err) return
 
     logger.error(err)
