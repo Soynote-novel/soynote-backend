@@ -26,5 +26,14 @@ export let table = {
   bio: {
     type: Sequelize.CHAR(80),
     allowNull: false
+  },
+  hit: {
+    type: Sequelize.INTEGER(10),
+    allowNull: false,
+    defaultValue: 0
+  },
+  score: {
+    type: Sequelize.INTEGER(1),
+    allowNull: false
   }
 }

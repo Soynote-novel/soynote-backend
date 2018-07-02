@@ -31,7 +31,7 @@ export let table = {
     allowNull: false
   },
   score: {
-    type: Sequelize.INTEGER(5),
+    type: Sequelize.INTEGER(1),
     allowNull: false
   }
 }
