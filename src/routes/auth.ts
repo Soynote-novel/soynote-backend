@@ -73,7 +73,7 @@ router.post('/login', isNotLogin, async (req, res) => {
   }
 })
 
-router.get('/check', LoginCheck, async (req, res) => {
+router.get('/check', LoginCheck, async (req: any, res) => {
   const { id, email, nickname, isAdmin } = req.token
 
   const payload = returnForm.isSuccess({ id, email, nickname, isAdmin })
@@ -89,7 +89,7 @@ router.get('/check', LoginCheck, async (req, res) => {
   })
 })
 
-router.get('/renew', LoginCheck, async (req, res) => {
+router.get('/renew', LoginCheck, async (req: any, res) => {
   const { id } = req.token
   let payload
 

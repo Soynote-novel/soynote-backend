@@ -1,4 +1,4 @@
-import { Request, Response } from 'express'
+import * as Express from 'express'
 import { JWT } from '../api'
 
 interface Token {
@@ -15,15 +15,11 @@ interface Token {
   sub: string
 }
 
-declare global {
-  namespace Express {
-    interface Request {
-      token: Token
-    }
-  }
+interface IRequest {
+  token: Token
 }
 
-async function LoginCheck (req: Request, res: Response, next: Function): Promise<void> {
+async function LoginCheck (req: any, res: Express.Response, next: Express.NextFunction): Promise<void> {
   let header = req.get('authorization')
   if (!header) {
     const payload = { valid: false, status: 'Please log in' }
