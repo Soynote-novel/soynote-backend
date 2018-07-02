@@ -1,6 +1,6 @@
 import * as Sequelize from 'sequelize'
 
-export let name = 'episode'
+export let name = 'episodeScore'
 
 export let config = {
   timestamps: true
@@ -14,24 +14,22 @@ export let table = {
     unique: true,
     defaultValue: Sequelize.UUIDV4
   },
-  name: {
-    type: Sequelize.CHAR(120),
-    allowNull: false
+  episode: {
+    type: Sequelize.UUID,
+    allowNull: false,
+    unique: true
   },
   novel: {
     type: Sequelize.UUID,
-    allowNull: false
-  },
-  isAdult: {
-    type: Sequelize.BOOLEAN,
     allowNull: false,
-    defaultValue: false
+    unique: false
   },
-  content: {
-    type: Sequelize.TEXT,
-    allowNull: false
+  totalScore: {
+    type: Sequelize.INTEGER(10),
+    allowNull: false,
+    defaultValue: 0
   },
-  hit: {
+  voteCount: {
     type: Sequelize.INTEGER(10),
     allowNull: false,
     defaultValue: 0

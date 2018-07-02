@@ -20,8 +20,10 @@ export default (tables: any) => {
   setFK(tables.Novel, 'novel', tables.Episode, 'cascade', 'cascade')
   setFK(tables.Novel, 'novelId', tables.Favorites, 'cascade', 'cascade')
   setFK(tables.Novel, 'novel', tables.Hashtag, 'cascade', 'cascade')
+  setFK(tables.Novel, 'novel', tables.Comment, 'cascade', 'cascade')
+  setFK(tables.Novel, 'novel', tables.EpisodeScore, 'cascade', 'cascade')
   tables.Episode.belongsTo(tables.Novel, { foreignKey: 'novel', as: 'Novel'})
 
   setFK(tables.Episode, 'episode', tables.Comment, 'cascade', 'cascade')
-  setFK(tables.Novel, 'novel', tables.Comment, 'cascade', 'cascade')
+  setFK(tables.Episode, 'episode', tables.EpisodeScore, 'cascade', 'cascade')
 }

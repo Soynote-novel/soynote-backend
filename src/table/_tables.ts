@@ -8,6 +8,7 @@ import * as Logs from './Logs'
 import * as Report from './Report'
 import * as SubscribedAuthors from './SubscribedAuthors'
 import * as User from './User'
+import * as EpisodeScore from './episodeScore'
 
 export {
     Comment,
@@ -19,5 +20,6 @@ export {
     Logs,
     Report,
     SubscribedAuthors,
-    User
+    User,
+    EpisodeScore
 }

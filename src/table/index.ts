@@ -12,6 +12,7 @@ const tables = {
   OAuth: defineTable(tableList.OAuth),
   Novel: defineTable(tableList.Novel),
   Episode: defineTable(tableList.Episode),
+  EpisodeScore: defineTable(tableList.EpisodeScore),
   Comment: defineTable(tableList.Comment),
   Report: defineTable(tableList.Report),
   Hashtag: defineTable(tableList.Hashtag),
