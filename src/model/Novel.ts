@@ -3,19 +3,32 @@ import table from '../table'
 const SUCCESS = true
 
 class Novel {
+  static async getAmount (): Promise<number> {
+    const payload = {}
+
+    const amount = table.Novel.count(payload)
+
+    return (!!amount) && amount
+  }
+
   static async getEpisodes (novel: string, page: number): Promise<object> {
     const payload = {
       where: { id: novel },
-      include: [{ model: table.User, attributes: ['id', 'nickname', 'bio'], as: 'Writer' },
+      include: [
+        { model: table.User,
+          attributes: ['id', 'nickname', 'bio'],
+          as: 'Writer'
+        },
         { model: table.Episode,
-          attributes: ['id', 'name', 'isAdult', 'hit', 'createdAt', 'updatedAt'],
+          attributes: ['id', 'name', 'isAdult', 'hit', 'createdAt', 'updatedAt']
         }],
       order: [[{ model: table.Episode}, 'createdAt',  'desc']],
+      attributes: ['id', 'name', 'writer', 'bio', 'createdAt',
+        'updatedAt'],
       limit: 20,
       offset: (page - 1) * 20
     }
     const episode = await table.Novel.findOne(payload)
-
     return (!!episode) && episode.toJSON()
   }
 

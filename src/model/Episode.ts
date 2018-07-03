@@ -1,8 +1,19 @@
 import table from '../table'
+import * as sequelize from 'sequelize'
 
 const SUCCESS = true
 
 class Episode {
+  static async getAmount (novel: string): Promise<number> {
+    const payload = {
+      where: { novel }
+    }
+
+    const amount = table.Episode.count(payload)
+
+    return (!!amount) && amount
+  }
+
   static async findById (id: string): Promise<boolean|object> {
     const payload = {
       where: { id },

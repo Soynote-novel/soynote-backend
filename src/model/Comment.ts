@@ -14,7 +14,7 @@ class Comment {
     return (!!comment) && comment.toJSON()
   }
 
-  static async averageAtEpisode (episode: string): Promise<object|null> {
+  /* static async averageAtEpisode (episode: string): Promise<object|null> {
     const payload = {
       attributes: [[sequelize.fn('AVG', sequelize.col('score'))]],
       where: { episode }
@@ -32,7 +32,7 @@ class Comment {
     const comment = await table.Comment.findOne(payload)
 
     return (!!comment) && comment.toJSON()
-  }
+  } */
 
   static async newComment (comment: { writer: string, novel: string, episode:string, content:string, score:number }): Promise<boolean> {
     const { writer, novel, episode, content, score } = comment

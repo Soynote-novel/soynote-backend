@@ -49,4 +49,15 @@ router.get('/list/:id/:page', async (req, res) => {
   return
 })
 
+router.get('/amount/:id', async (req, res) => {
+  const episodes = await model.Episode.getAmount(req.params.id)
+  const payload = returnForm.isSuccess(episodes)
+
+  res.status(200)
+  res.jsonp(payload)
+  res.end()
+
+  return
+})
+
 export default router
