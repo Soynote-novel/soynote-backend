@@ -12,6 +12,5 @@ export let strategyConfig = {
   clientID,
   clientSecret,
   callbackURL,
-  passReqToCallback: true,
-  session: false
+  passReqToCallback: true
 }

@@ -19,7 +19,7 @@ export let table = {
     allowNull: true
   },
   oAuthId: {
-    type: Sequelize.INTEGER(64),
+    type: Sequelize.STRING(128),
     allowNull: false,
     unique: false,
     validate: {

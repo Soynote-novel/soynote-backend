@@ -17,6 +17,5 @@ export let strategyConfig = {
     'profile',
     'email',
     'https://www.googleapis.com/auth/plus.login'
-  ],
-  session: false
+  ]
 }

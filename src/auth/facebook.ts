@@ -17,6 +17,5 @@ export let strategyConfig = {
     'id',
     'name',
     'displayName'
-  ],
-  session: false
+  ]
 }

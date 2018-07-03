@@ -10,6 +10,5 @@ export let Strategy = require('passport-kakao').Strategy
 export let strategyConfig = {
   clientID,
   callbackURL,
-  passReqToCallback: true,
-  session: false
+  passReqToCallback: true
 }
