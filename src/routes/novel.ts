@@ -51,4 +51,15 @@ router.get('/list/:page', async (req, res) => {
   return
 })
 
+router.get('/amount', async (req, res) => {
+  const novels = await model.Novel.getAmount()
+  const payload = returnForm.isSuccess(novels)
+
+  res.status(200)
+  res.jsonp(payload)
+  res.end()
+
+  return
+})
+
 export default router
