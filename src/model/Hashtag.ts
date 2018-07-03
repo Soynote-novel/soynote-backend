@@ -16,7 +16,7 @@ class Hashtag {
     }
     const hashtag = await table.Hashtag.findAll(payload)
 
-    return (!!hashtag) && hashtag.dataValues
+    return (!!hashtag) && hashtag.toJSON()
   }
 
   static async findByTag (tag: string): Promise<object|null> {
@@ -25,7 +25,7 @@ class Hashtag {
     }
     const hashtag = await table.Hashtag.findAll(payload)
 
-    return (!!hashtag) && hashtag.dataValues
+    return (!!hashtag) && hashtag.toJSON()
   }
 
   static async createTags (tag:{ novel: string, tags: string[] }):Promise<boolean> {

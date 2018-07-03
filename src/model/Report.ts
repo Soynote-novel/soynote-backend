@@ -8,18 +8,18 @@ class Report {
     const payload = {
       where: { id }
     }
-    const user = await table.Report.findOne(payload)
+    const report = await table.Report.findOne(payload)
 
-    return (!!user) && user.dataValues
+    return (!!report) && report.toJSON()
   }
 
   static async userId (writer: string): Promise<any> {
     const payload = {
       where: { writer }
     }
-    const user = await table.User.findOne(payload)
+    const report = await table.User.findOne(payload)
 
-    return (!!user) && user.dataValues
+    return (!!report) && report.toJSON()
   }
 
   static async create (create: { writer: string, type: string, status: string, content: string, report: string }): Promise<boolean> {

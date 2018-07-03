@@ -10,7 +10,7 @@ class Favorites {
     }
     const favorites = await table.Favorites.findAll(payload)
 
-    return (!!favorites) && favorites.dataValues
+    return (!!favorites) && favorites.toJSON()
   }
 
   static async findByNovel (novelId: string): Promise<object|null> {
@@ -19,7 +19,7 @@ class Favorites {
     }
     const favorites = await table.Favorites.findAll(payload)
 
-    return (!!favorites) && favorites.dataValues
+    return (!!favorites) && favorites.toJSON()
   }
 
   static async create (info: { userId: string, novelId: string }): Promise<boolean> {

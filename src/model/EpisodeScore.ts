@@ -2,8 +2,8 @@ import table from '../table'
 
 const SUCCESS = true
 
-class Episode {
-  static async findById (id: string): Promise<boolean|object> {
+class EpisodeScore {
+  static async findById (id: string): Promise<object> {
     const payload = {
       where: { id },
       include: [{ model: table.Novel, attributes: ['id', 'name', 'bio'], as: 'Novel' }]
@@ -34,4 +34,4 @@ class Episode {
   }
 }
 
-export default Episode
+export default EpisodeScore

@@ -16,7 +16,7 @@ class Novel {
     }
     const episode = await table.Novel.findOne(payload)
 
-    return (!!episode) && episode
+    return (!!episode) && episode.toJSON()
   }
 
   static async getNovels (page: number): Promise<object> {
@@ -29,7 +29,7 @@ class Novel {
     }
     const novel = await table.Novel.findAll(payload)
 
-    return (!!novel) && novel
+    return (!!novel) && novel.toJSON()
   }
 
   static async findById (id: string): Promise<object|null> {
@@ -40,7 +40,7 @@ class Novel {
     }
     const novel = await table.Novel.findOne(payload)
 
-    return (!!novel) && novel.dataValues
+    return (!!novel) && novel.toJSON()
   }
 
   static async findByName (name: string): Promise<object|null> {
@@ -51,7 +51,7 @@ class Novel {
     }
     const novel = await table.Novel.findAll(payload)
 
-    return (!!novel) && novel.dataValues
+    return (!!novel) && novel.toJSON()
   }
 
   static async findByWriter (writer:string): Promise<object|null> {
@@ -62,7 +62,7 @@ class Novel {
     }
     const novel = await table.Novel.findAll(payload)
 
-    return (!!novel) && novel.dataValues
+    return (!!novel) && novel.toJSON()
   }
 
   static async createNovel (Novel: { writer: string, name: string, bio: string }): Promise<boolean> {

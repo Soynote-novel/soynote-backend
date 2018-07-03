@@ -10,7 +10,7 @@ class User {
     }
     const user = await table.User.findOne(payload)
 
-    return (!!user) && user.dataValues
+    return (!!user) && user.toJSON()
   }
 
   static async findByEmail (email: string): Promise<any> {
@@ -19,7 +19,7 @@ class User {
     }
     const user = await table.User.findOne(payload)
 
-    return (!!user) && user.dataValues
+    return (!!user) && user.toJSON()
   }
 
   static async findByNick (nickname: string): Promise<any> {
@@ -28,7 +28,7 @@ class User {
     }
     const user = await table.User.findOne(payload)
 
-    return (!!user) && user.dataValues
+    return (!!user) && user.toJSON()
   }
 
   static async register (user: { email: string, password: string, nickname: string }): Promise<boolean> {

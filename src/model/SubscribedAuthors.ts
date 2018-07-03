@@ -30,7 +30,7 @@ class SubscribedAuthors {
     }
     const subscribe = await table.SubscribedAuthors.findAll(payload)
 
-    return (!!subscribe) && subscribe.dataValues
+    return (!!subscribe) && subscribe.toJSON()
   }
 
   static async findByNovel (novel: string): Promise<object|null> {
@@ -39,7 +39,7 @@ class SubscribedAuthors {
     }
     const subscribe = await table.SubscribedAuthors.findAll(payload)
 
-    return (!!subscribe) && subscribe.dataValues
+    return (!!subscribe) && subscribe.toJSON()
   }
 }
 

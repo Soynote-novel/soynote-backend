@@ -7,15 +7,17 @@ import Comment from './Comment'
 import Favorites from './Favorites'
 import Logs from './Logs'
 import Report from './Report'
+import EpisodeScore from './EpisodeScore'
 
 export {
-    User,
-    OAuth,
-    Novel,
-    Hashtag,
-    Episode,
-    Comment,
-    Favorites,
-    Logs,
-    Report
+  User,
+  OAuth,
+  Novel,
+  Hashtag,
+  Episode,
+  Comment,
+  Favorites,
+  Logs,
+  Report,
+  EpisodeScore
 }

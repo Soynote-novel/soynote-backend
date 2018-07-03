@@ -10,7 +10,7 @@ class OAuth {
     }
     const oauth = await table.OAuth.findOne(payload)
 
-    return (!!oauth) && oauth.dataValues
+    return (!!oauth) && oauth.toJSON()
   }
 
   static async findByUserId (userId: string): Promise<any> {
@@ -20,7 +20,7 @@ class OAuth {
     }
     const oauth = await table.OAuth.findOne(payload)
 
-    return (!!oauth) && oauth.dataValues
+    return (!!oauth) && oauth.toJSON()
   }
 
   static async findByOAuth (oAuthId: number, vendor: string): Promise<any> {
@@ -30,7 +30,7 @@ class OAuth {
     }
     const oauth = await table.OAuth.findOne(payload)
 
-    return (!!oauth) && oauth.dataValues
+    return (!!oauth) && oauth.toJSON()
   }
 
   static async createUser (user: { userId: string, oAuthId: number, vendor: string }): Promise<boolean> {
@@ -54,12 +54,13 @@ class OAuth {
   static async successRegister (user: { userId: string, oAuthId: number, vendor: string }): Promise<boolean> {
     const { userId, oAuthId, vendor } = user
     const where = {
-      where: { oAuthId, vendor }
+      where: { oAuthId, vendor },
+      raw: true
     }
 
     let result = await table.OAuth.findOne(where)
 
-    if (result.dataValues && !result.dataValues.user.dataValues.userId) {
+    if (result && !result.userId) {
       const payload = { userId }
 
       await table.OAuth.update(payload, where)

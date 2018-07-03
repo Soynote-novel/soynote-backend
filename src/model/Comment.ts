@@ -11,7 +11,7 @@ class Comment {
     }
     const comment = await table.Comment.findOne(payload)
 
-    return (!!comment) && comment.dataValues
+    return (!!comment) && comment.toJSON()
   }
 
   static async averageAtEpisode (episode: string): Promise<object|null> {
@@ -21,7 +21,7 @@ class Comment {
     }
     const comment = await table.Comment.findOne(payload)
 
-    return (!!comment) && comment.dataValues
+    return (!!comment) && comment.toJSON()
   }
 
   static async averageAtNovel (novel:string): Promise<number|null> {
@@ -31,7 +31,7 @@ class Comment {
     }
     const comment = await table.Comment.findOne(payload)
 
-    return (!!comment) && comment.dataValues
+    return (!!comment) && comment.toJSON()
   }
 
   static async newComment (comment: { writer: string, novel: string, episode:string, content:string, score:number }): Promise<boolean> {
