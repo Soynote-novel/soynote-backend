@@ -8,6 +8,8 @@ import * as cors from 'cors'
 import * as cookieParser from 'cookie-parser'
 import * as passport from 'passport'
 import { returnForm } from './api'
+import * as session from 'express-session'
+import * as redisstore from 'connect-redis'
 
 // const bluebird = require('bluebird')
 // const redis = require('redis')
@@ -52,7 +54,17 @@ try {
 
   app.use(cookieParser())
 
+  app.use(session({
+    secret: config.session.secret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: true
+    }
+  }))
+
   app.use(passport.initialize())
+  app.use(passport.session())
 
   app.use(cors({ origin: config.CORS }))
 

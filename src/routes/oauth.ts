@@ -6,12 +6,19 @@ const router = Router()
 
 import * as auth from '../auth'
 
+passport.serializeUser((user, done) => {
+  done(null, {})
+})
+
+passport.deserializeUser((user, done) => {
+  done(null, {})
+})
+
 // passport auth configure
 const configurePassport = (configure: { vendor: string, Strategy: any, strategyConfig: any }) => {
   const { vendor, Strategy, strategyConfig } = configure
   const option = {
-    failureRedirect: '/oauth/loginfail',
-    session: false
+    failureRedirect: '/oauth/loginfail'
   }
 
   router.get(`/${vendor}`, passport.authenticate(vendor))

@@ -15,7 +15,8 @@ export default (vendor: string) => {
 
     if (result && result.user && result.user.id) {
       if (token) {
-        done('already registered account', false, { message: 'already registered' })
+        done(null, false, { message: 'already registered' })
+        return
       } else {
         const { id, email, nickname, isAdmin } = result.user
         payload = { id, email, nickname, isAdmin, vendor, oAuthId: profile.id, requireRegister: false }
